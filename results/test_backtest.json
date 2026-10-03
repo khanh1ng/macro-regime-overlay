@@ -1,0 +1,10 @@
+{
+ "fund_equals_fund": true,
+ "drift_turnover_hand": true,
+ "k_weights_follow_table": true,
+ "weights_sum_to_one": true,
+ "baseline_weights_truncation": "18/18",
+ "positive_control_flagged": "8 of 18 flagged; 7 cuts where the cap does not bind",
+ "label_shift_changes_K": true,
+ "pass": true
+}

@@ -1,0 +1,10 @@
+{
+  "source": "The author's earlier backtest of this overlay on vendor monthly prices (Spring 2026). Values copied from its tables; Sharpe there is (CAGR - rf) / vol, with geometric annualisation.",
+  "window": "2011-02 to 2026-05",
+  "fund": {"cagr_pct": 16.81, "vol_pct": 20.73, "sharpe_geo": 0.7364, "maxdd_pct": -29.07,
+           "q4_2018_pct": -29.07, "covid_feb_mar_2020_pct": -14.88, "jan_oct_2022_pct": -12.56},
+  "K_walkforward": {"cagr_pct": 17.05, "vol_pct": 15.28, "sharpe_geo": 1.0146, "maxdd_pct": -13.41},
+  "write_up_headline": {"fund_cagr_pct": 16.49, "K_cagr_pct": 16.81, "fund_sharpe": 0.72, "K_sharpe": 1.00,
+                        "fund_maxdd_pct": -29.07, "K_maxdd_pct": -13.41},
+  "configurations_tried": 40
+}

@@ -1,0 +1,83 @@
+{
+ "first_forecast": "2000-03",
+ "forecast": {
+  "P1": {
+   "months": 234,
+   "oos_r2_pct": -0.23,
+   "clark_west_t": 0.8
+  },
+  "P0": {
+   "months": 78,
+   "oos_r2_pct": -3.31,
+   "clark_west_t": -0.53
+  }
+ },
+ "alloc": {
+  "P1": {
+   "M": {
+    "months": 234,
+    "cagr_pct": 12.66,
+    "vol_pct": 12.65,
+    "sharpe": 0.893,
+    "maxdd_pct": -32.24,
+    "worst12_pct": -32.24,
+    "end_value_per_1": 10.2179
+   },
+   "S-M": {
+    "months": 234,
+    "cagr_pct": 11.3,
+    "vol_pct": 11.76,
+    "sharpe": 0.845,
+    "maxdd_pct": -30.57,
+    "worst12_pct": -26.21,
+    "end_value_per_1": 8.0608
+   },
+   "avg_fund_weight_M": 0.62,
+   "share_months_at_bounds": 0.444,
+   "timing_sharpe": 0.047,
+   "timing_ci90": [
+    -0.088,
+    0.197
+   ],
+   "timing_maxdd_pp": -1.67,
+   "turnover_M": 2.95
+  },
+  "P0": {
+   "M": {
+    "months": 78,
+    "cagr_pct": -1.91,
+    "vol_pct": 12.88,
+    "sharpe": -0.297,
+    "maxdd_pct": -44.43,
+    "worst12_pct": -28.1,
+    "end_value_per_1": 0.8821
+   },
+   "S-M": {
+    "months": 78,
+    "cagr_pct": 0.58,
+    "vol_pct": 10.3,
+    "sharpe": -0.16,
+    "maxdd_pct": -35.72,
+    "worst12_pct": -26.83,
+    "end_value_per_1": 1.038
+   },
+   "avg_fund_weight_M": 0.627,
+   "share_months_at_bounds": 0.564,
+   "timing_sharpe": -0.137,
+   "timing_ci90": [
+    -0.366,
+    0.011
+   ],
+   "timing_maxdd_pp": -8.71,
+   "turnover_M": 3.94
+  }
+ },
+ "hedge_mix": {
+  "HYG": 0.2,
+  "GLD": 0.4333,
+  "DBC": 0.0333,
+  "SHY": 0.2,
+  "UUP": 0.1333
+ },
+ "timing_adds_value": false
+}

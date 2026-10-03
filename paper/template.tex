@@ -1,0 +1,771 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[round]{natbib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\usepackage{parskip}
+\usepackage{caption}
+\setlength{\emergencystretch}{1.5em}
+
+\title{\textbf{Macro Regimes and a Concentrated Growth Fund}\\[0.4em]
+\large Real-Time Evidence on Regime Timing versus Static Diversification, 1990--2026}
+\author{Khanh Nguyen}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Allocators often sort months into four macro regimes by the direction of growth and inflation and
+change their holdings with the regime. We ask whether such a rule can protect a concentrated U.S.\ growth
+fund, the JPMorgan Large Cap Growth Fund, without giving up its return. The regimes are built only from data
+published at the time (@@ip_n@@ vintages of industrial production and consumer prices that are never
+revised), the fund's returns are checked against its annual report, and the overlay is tested under a
+specification frozen before any backtest. Three results. First, revisions matter: real-time and revised
+regimes agree in only @@agree_rev1@@ of months, and the usual backtest construction agrees with what was
+knowable in @@agree_rev2@@. Second, real-time regimes do not forecast next month's excess return of any of
+@@n_assets@@ asset classes once @@n_tests@@ tests are accounted for, and for the growth fund the effect of
+Stagflation reverses sign around 2007 (@@pre_con@@ a year relative to other regimes before, @@post_con@@ after).
+Third, a regime overlay improves the fund's Sharpe ratio from @@P1_f_sh@@ to @@P1_k_sh@@ in 2007--2026, and
+its timing component is significant there (@@P1_ti_sh@@, 90\% interval @@P1_ti_ci@@); but in 2000--2007 the
+same timing lowers the Sharpe ratio by @@P0_ti_sh@@ and deepens the drawdown, for the fund and for ten other equity funds and indices of different styles and
+regions; these, however, behave like little more than one independent series. A standard predictive
+regression on the same real-time signals has no out-of-sample skill and adds no value either, and the
+stock--bond correlation does not explain the change. Holding the overlay's average weights without timing
+helps in both periods. The
+robust recommendation is static diversification; regime timing is a bet on the post-2007 era.
+\end{abstract}
+
+%=====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+\paragraph{The problem.} Many investors hold a single concentrated growth fund. The JPMorgan Large Cap Growth
+Fund is a good example: a large, well-run fund whose ten largest positions are about half of its assets and
+which holds almost nothing outside U.S.\ growth equity. Its returns are excellent in most years, and its
+drawdowns are deep when growth stocks fall together: @@P1_f_dd@@ on month-end data in 2008 (Class I shares),
+@@dd_daily@@ from peak to trough in March 2020 on daily data, and @@dd_me@@ on month-end data in 2022. The
+question is whether adding other assets, and changing how much is added with the macro environment, can keep
+most of the return and cut those drawdowns.
+
+\paragraph{Why macro regimes.} The idea that asset returns depend on the macro environment is old and
+intuitive. Equities do well when growth rises and inflation falls; bonds do well when inflation falls;
+commodities and gold are expected to help when inflation rises. Classifying each month by whether growth and
+inflation are accelerating gives four regimes (Goldilocks, Reflation, Disinflation, Stagflation), and a
+regime overlay holds the assets that historically did best in the current one. The framework is common in
+practice \citep{ilmanen2011}; statistical versions with estimated regime probabilities have a long academic
+history \citep{ang2002}.
+
+\paragraph{Three ways such backtests go wrong.} First, macro data are revised. Industrial production is
+published about two weeks after the month ends and then revised for years, so a backtest built on today's
+data uses numbers nobody had \citep{croushore2001,orphanides2001}. Second, return predictability from macro
+variables is fragile and often vanishes out of sample or across subperiods \citep{welch2008}. Third, an
+allocation table chosen after trying many versions on the same data overstates what an investor would have
+earned \citep{harvey2016,bailey2014}. A fourth, more mundane, problem is data: mutual-fund price series from
+free vendors can mishandle distributions, which moves losses between months.
+
+\paragraph{What this paper does.} We address each problem directly. Return data are checked against the
+fund's annual report to the SEC. Regimes are built from the industrial production vintages published each
+month and from consumer prices that are never revised, and a look-ahead test with a deliberate leak as a
+positive control confirms that no decision uses later data. We then ask whether regimes forecast returns at
+all, and finally test a specific overlay under a specification frozen before any backtest, against six simple
+alternatives, in an earlier period that played no part in its design, and on ten other equity funds and
+indices; we also test a standard predictive-regression alternative and one candidate mechanism.
+
+\begin{table}[htbp]
+\centering
+\caption{Main results at a glance.}
+\label{tab:glance}
+\small
+\begin{tabular}{@{}p{0.47\textwidth}p{0.45\textwidth}@{}}
+\toprule
+Question & Answer \\
+\midrule
+Do revisions change the regimes? & Real-time and revised regimes agree in @@agree_rev1@@ of months \\
+Do real-time regimes forecast next month's returns? & @@nbonf_all@@ of @@n_tests@@ tests pass a Bonferroni correction \\
+Is the growth fund's Stagflation effect stable? & @@pre_con@@ a year before 2007, @@post_con@@ after \\
+Does the overlay's \emph{timing} add value, 2007--2026? & Sharpe @@P1_ti_sh@@, 90\% interval @@P1_ti_ci@@ \\
+\quad and in 2000--2007? & Sharpe @@P0_ti_sh@@, 90\% interval @@P0_ti_ci@@ \\
+Does its \emph{average allocation} add value? & Sharpe @@P1_st_sh@@ (2007--2026) and @@P0_st_sh@@ (2000--2007) \\
+Same pattern for ten other equity assets? & Yes for all ten, but they behave like @@neff11@@ independent series \\
+Does a predictive regression do better? & No: out-of-sample $R^2$ @@m_r2_P1@@ and @@m_r2_P0@@ \\
+Does the stock--bond correlation explain the sign change? & No: within each period both states have the same sign \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Contributions.}
+\begin{enumerate}
+\item A real-time growth--inflation classifier and a measurement of what revisions change
+(Section~\ref{sec:regimes}).
+\item Evidence that regime-conditional returns are not a stable basis for allocation: no asset survives a
+multiple-testing correction, and for growth equities the sign of the Stagflation effect reverses around 2007
+(Section~\ref{sec:predict}).
+\item A test of a regime overlay that separates static allocation from timing, uses an out-of-sample period
+and hold-out assets, measures how independent those hold-outs are, and finds that the static part is robust and
+the timing part is not (Sections~\ref{sec:design}--\ref{sec:results}). A standard predictive regression on the same
+signals fails in the same way (Section~\ref{sec:model}).
+\end{enumerate}
+
+%=====================================================================
+\section{Data and verification}
+\label{sec:data}
+
+\paragraph{Asset returns.} Daily total returns from Yahoo Finance, compounded to month-end, for the fund
+(JLGMX, Class R6, from December 2010; before that its Class I shares SEEGX, the same portfolio with returns
+@@gap_mean@@ points a year lower on average because of the higher fee), growth and broad equity benchmarks,
+three other growth funds, and eight non-equity ETFs. Excess returns are over the 3-month Treasury bill. Before
+the ETFs exist, long-history proxies are used (Appendix~\ref{app:proxy}).
+
+\paragraph{Verification.} A single vendor is a single point of failure, so we checked the data against an
+independent source: the fund's annual report to the SEC, which states average annual total returns to 30
+June 2026 (Table~\ref{tab:data}).
+
+\begin{table}[htbp]
+\centering
+\caption{Average annual total returns to 2026-06-30 (\%): computed from our data vs.\ the annual report (or,
+for IWF, the index it tracks, before its @@iwf_fee@@ fee).}
+\label{tab:data}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{1 year} & \multicolumn{2}{c}{5 years} & \multicolumn{2}{c}{10 years} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+& Ours & Report & Ours & Report & Ours & Report \\
+\midrule
+@@TAB_A_DATA@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+The fund numbers agree to within @@v1_max@@ percentage points a year. Three further checks: adjusted prices
+equal raw prices plus reinvested distributions on at least @@v2_min@@ of days for every series; the two share
+classes differ by @@gap_min@@ to @@gap_max@@ points a year, which is their fee difference, and never by more than
+@@gap_month_max@@ points in a month; and no fund shows a drop of more than 4\% on a day when the market moved
+less than 1.5\%, the signature of a missing distribution.
+
+\paragraph{Why this matters: an earlier backtest.} An earlier backtest of the overlay studied here, run by the
+author on vendor monthly prices for 2011--2026, is a useful warning (Table~\ref{tab:old}). Its compound
+return for the fund is the same as ours, @@Pold_f_cagr@@, but its volatility was @@vol_gap_old@@ percentage
+points higher and its losses were placed in the wrong months: $-29\%$ in late 2018 that was really @@V_q4@@,
+and $-13\%$ in 2022 that was really @@V_22@@. The same compound return with more volatility is the signature
+of distributions recorded in the wrong month: a fund that pays a large capital gain in December shows a fake
+drop when the payment is missed and a fake recovery when it is caught up. On those data the overlay appeared
+to raise the return (@@old_k_cagr@@ against @@old_fund_cagr@@); on verified data it lowers it
+(@@pold_k_cagr@@ against @@pold_f_cagr@@).
+
+\begin{table}[htbp]
+\centering
+\caption{The earlier backtest on vendor monthly prices against verified data, 2011-02 to 2026-05. Sharpe
+here is (CAGR $-$ T-bill)/volatility, the convention of the earlier backtest. K is the overlay of
+Section~\ref{sec:design}; on verified data it uses the real-time classifier.}
+\label{tab:old}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+& Earlier backtest & Verified data \\
+\midrule
+@@TAB_B_OLD@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Macro data.} The Real-Time Data Set for Macroeconomists of the Federal Reserve Bank of
+Philadelphia \citep{croushore2001} records, for each month from @@ip_first@@ to @@ip_last@@, the history of
+industrial production as published in the middle of that month: @@ip_n@@ vintages. Each vintage ends with the
+previous month, except the October and November 2025 vintages, which end in August 2025 because the federal
+shutdown delayed the release. The last vintage matches today's FRED series to within @@ip_fred_gap@@. For
+inflation we use the consumer price index \emph{not} seasonally adjusted, which is never revised; its
+year-on-year change correlates @@cpi_corr@@ with that of the adjusted index and never differs by more than
+@@cpi_gap@@ points.
+
+%=====================================================================
+\section{Regimes in real time}
+\label{sec:regimes}
+
+\paragraph{Timing.} The decision is made at the end of month $t$ and applies to returns in month $t+1$. At that
+moment industrial production is known through month $t-1$ (the vintage dated $t$), and so are consumer
+prices.
+
+\paragraph{Signals and regimes.} For each series we take the year-on-year growth rate and its change over six
+months, $d_t = \text{YoY}_{t-1} - \text{YoY}_{t-7}$, computed within the vintage available at $t$. Year-on-year
+growth removes seasonality; the six-month change asks whether conditions are improving or worsening.
+Goldilocks: growth up, inflation down. Reflation: both up. Disinflation: both down. Stagflation: growth down,
+inflation up.
+
+\paragraph{Variants.} The raw classifier uses the signals as they are. A smoothed version averages each signal
+over three months, and a persistent version changes regime only after a new label has appeared for three
+consecutive months. For comparison we also build the classifier as it is usually backtested: today's revised
+industrial production, seasonally adjusted prices and a fixed lag.
+
+\paragraph{Look-ahead test.} We delete every input published after month $t$, rerun the classifier, and compare
+every label up to $t$ with the full-data run. At @@tl_cuts@@ randomly chosen months the labels are identical in
+@@tl_id@@ of @@tl_cuts@@ cases. A test that never fails proves little, so we also ran it after letting the next
+month's prices leak into the signal: it flagged @@tl_pc@@ of @@tl_cuts@@ cuts.
+
+\begin{table}[htbp]
+\centering
+\caption{Regime statistics, decisions 1990--2026. Switches: regime changes; spell: average months per
+regime; last four columns: share of months in each regime.}
+\label{tab:spells}
+\small
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Classifier & Months & Switches & Spell & Gold. & Refl. & Disinf. & Stagf. \\
+\midrule
+@@TAB_A_SPELLS@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{What revisions change.} Under the same rules and lag, real-time and revised classifiers agree in
+@@agree_rev1@@ of months. The difference comes from growth: the sign of the growth signal agrees in
+@@sign_g@@ of months (correlation @@corr_g@@), that of the inflation signal in @@sign_i@@ (correlation
+@@corr_i@@). The usual construction, revised data with a two-month lag, agrees with the real-time labels in
+only @@agree_rev2@@ of months: roughly @@disagree_third@@ of the labels in such a backtest could not have been
+known when the trade was made. Smoothing does not wash this out (agreement @@agree_sp@@), because the
+persistence rule turns a small change in timing into a different regime for several months.
+
+\paragraph{Stability.} The raw classifier switches @@raw_switch@@ times in @@raw_months@@ months, every
+@@raw_spell@@ months on average (Table~\ref{tab:spells}); smoothing and persistence reduce this to
+@@sp_switch@@ switches at the cost of reacting later. Delaying the raw classifier by one, two or three further
+months leaves only @@agree_l1@@, @@agree_l2@@ and @@agree_l3@@ of labels unchanged.
+
+\begin{table}[htbp]
+\centering
+\caption{The 2008 crisis month by month. ``IP through'': last month of industrial production available at the
+decision; $d^g$, $d^\pi$: real-time growth and inflation signals (percentage points).}
+\label{tab:2008}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrlll@{}}
+\toprule
+Decision & IP through & $d^g$ & $d^\pi$ & Real time, raw & Real time, persistent & Revised, lag 2 \\
+\midrule
+@@TAB_A_2008@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{An example.} In real time the inflation signal stayed positive into the autumn of 2008 because
+energy prices rose until July, while growth was already falling (Table~\ref{tab:2008}). The raw classifier
+labels most of 2008 Stagflation and switches to Disinflation in November; the persistent version keeps
+Stagflation until early 2009; the revised version moves between regimes in a different order. For an
+allocation rule the differences are large: the same month can call for 25\% or 80\% in equities depending on
+which version is used.
+
+%=====================================================================
+\section{Do regimes forecast returns?}
+\label{sec:predict}
+
+\paragraph{Test.} For each asset we regress the excess return of month $t+1$ on four dummies for the regime known
+at the end of month $t$; the coefficients are the average excess returns by regime. Standard errors are
+Newey--West with six lags \citep{newey1987}. A Wald test asks whether the four means are equal, and a contrast
+measures Stagflation minus the average of the other regimes, the comparison regime-based de-risking relies on.
+With @@n_assets@@ assets and three classifiers there are @@n_tests@@ tests, so a Bonferroni correction requires
+$p<$ @@bonf@@.
+
+\begin{table}[htbp]
+\centering
+\caption{Wald $p$-values for equal mean excess returns across regimes, from the date shown to 2026-09; last two
+columns: Stagflation minus the other regimes (\%/yr) and its $t$-statistic, real-time raw classifier.}
+\label{tab:wald}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& & \multicolumn{3}{c}{Wald $p$} & \multicolumn{2}{c}{Stagflation $-$ others} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+Asset & From & Real time & RT persistent & Revised & \%/yr & $t$ \\
+\midrule
+@@TAB_A_WALD@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{No asset survives.} With the real-time raw classifier @@n05_raw@@ of @@n_assets@@ assets has $p<0.05$
+(high yield, $p=$ @@hyg_p@@), and @@nbonf_all@@ of the @@n_tests@@ tests pass the Bonferroni level
+(Table~\ref{tab:wald}). Point estimates are often large: long Treasuries earn @@tlt_stag@@ a year more in
+Stagflation ($t=$ @@tlt_stag_t@@), and gold earns @@gld_stag@@ in Stagflation but also @@gld_gold@@ in
+Goldilocks. Monthly returns are too noisy, and regime episodes too few, to separate these from chance.
+
+The long-Treasury estimate contradicts a popular rule. Many regime allocations exclude long bonds in
+Stagflation because of 2022, when stocks and bonds fell together. In real time only @@tlt_2022_n@@ return months
+of 2022 follow a Stagflation label, and in them long Treasuries returned @@tlt_2022@@ a year. Among years with
+at least four such months, the four best for long Treasuries were @@tlt_top@@; excluding 2008 they still earn
+@@tlt_ex2008@@ a year in Stagflation. A rule drawn from one episode does not describe the regime.
+
+\begin{table}[htbp]
+\centering
+\caption{The growth fund (SEEGX) by real-time regime: months, annualised excess return (\%) and Sharpe ratio,
+over the full sample and before and after March 2007.}
+\label{tab:fund}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lrrrrrrrrr@{}}
+\toprule
+& \multicolumn{3}{c}{1992--2026} & \multicolumn{3}{c}{1992--2007} & \multicolumn{3}{c}{2007--2026} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Regime & $n$ & Excess & SR & $n$ & Excess & SR & $n$ & Excess & SR \\
+\midrule
+@@TAB_A_FUND@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[ybar, bar width=12pt, width=0.8\textwidth, height=5.2cm, symbolic x coords={Goldilocks,Reflation,Disinflation,Stagflation},
+  xtick=data, ylabel={Excess return (\%/yr)}, legend style={at={(0.5,1.02)},anchor=south,legend columns=2,font=\small},
+  ymajorgrids, grid style={gray!25}, enlarge x limits=0.18]
+\addplot[fill=gray!35, draw=black] coordinates {@@FIG_A_PRE@@}; \addlegendentry{1992--2007}
+\addplot[fill=black!75, draw=black] coordinates {@@FIG_A_POST@@}; \addlegendentry{2007--2026}
+\end{axis}
+\end{tikzpicture}
+\caption{Annualised excess return of the growth fund in the month after each real-time regime.}
+\label{fig:fund}
+\end{figure}
+
+\paragraph{The growth fund: the sign changes.} Over the full sample the fund earns @@f_stag@@ a year above bills
+after Stagflation months, and the contrast with other regimes is @@f_con@@ ($t=$ @@f_cont@@). The two halves of
+the sample disagree (Table~\ref{tab:fund}, Figure~\ref{fig:fund}). Before 2007, Stagflation was the fund's
+\emph{best} regime (@@pre_stag@@, contrast @@pre_con@@); after 2007 it was close to its worst (@@post_stag@@,
+contrast @@post_con@@, $t=$ @@post_cont@@, Wald $p=$ @@post_p@@). After 2007 the regime means also differ
+significantly for @@post_sig@@; before 2007 none of the @@n_pre_assets@@ assets with enough history shows a
+significant difference. Even after 2007 the result depends on the classifier: with the persistent version the
+fund's Wald $p$ is @@sp_post_p@@.
+
+\paragraph{Why the sign might change.} Stagflation decision months are spread over @@stag_pre_nyears@@ calendar
+years before 2007 and @@stag_post_nyears@@ after; the largest clusters are @@stag_pre_top@@ before and
+@@stag_post_top@@ after. The second half contains the 2008 crash (@@stag_0708@@ Stagflation months in
+2007--2008); the 2022 inflation shock contributes only @@stag_2022@@, because year-on-year growth of industrial
+production was still rising in the decisions from March to August 2022. \citet{campbell2020} link the change in
+sign of the stock--bond correlation around 2000 to changes in monetary policy and in the nature of inflation
+shocks; a similar change could make the equity response to rising inflation depend on the era. This is a
+hypothesis; the data cannot separate it from the simpler explanation that a few episodes dominate each half.
+
+\paragraph{Testing that mechanism.} We can test one version directly. At each decision month we compute the
+correlation between the fund's and intermediate Treasuries' monthly returns over the previous 36 months, which is
+known at the time, and let the regime effect differ by its sign (decisions from @@mech_first@@). Over the full sample
+the direction is as the hypothesis predicts: the Stagflation contrast is @@mech_pos@@ a year when the correlation is
+positive ($t=$ @@mech_pos_t@@) and @@mech_neg@@ when it is negative ($t=$ @@mech_neg_t@@). But the difference is far from
+significant ($t=$ @@mech_diff_t@@), and within each period both states have the same sign: @@mech_pre_pos@@ and
+@@mech_pre_neg@@ before 2007, @@mech_post_pos@@ and @@mech_post_neg@@ after. The correlation was positive in
+@@mech_share_pre@@ of months before 2007 and @@mech_share_post@@ after, so it moves with the era, but it does not explain the
+sign change: the change follows the calendar, not the correlation state.
+
+\paragraph{Power.} The standard error of the fund's Stagflation contrast is @@se_full@@ a year, so an effect would
+have to be about @@mde_full@@ a year to be detected with 80\% probability at the 5\% level (@@mde_pre@@ and
+@@mde_post@@ in the two halves). The data do not show that regimes are irrelevant. They show that differences of
+the size observed cannot be told from chance and do not keep their sign, which is a weak basis for an
+allocation rule.
+
+%=====================================================================
+\section{The overlay and the test design}
+\label{sec:design}
+
+\begin{table}[htbp]
+\centering
+\caption{Overlay K: weights (\%) by regime, frozen before this study.}
+\label{tab:k}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Regime (growth, inflation) & Fund & High yield & Gold & Commodities & 1--3y Treasuries & Dollar \\
+\midrule
+Goldilocks (up, down) & 90 & 10 & & & & \\
+Reflation (up, up) & 55 & 10 & 30 & 5 & & \\
+Disinflation (down, down) & 80 & 10 & 10 & & & \\
+Stagflation (down, up) & 25 & & 25 & & 30 & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The overlay.} Overlay K (Table~\ref{tab:k}) is a typical regime table. It keeps most of the fund in
+Goldilocks and Disinflation, cuts it deeply in Stagflation, and chooses hedges by regime: gold and
+commodities when inflation rises, short Treasuries and dollars in Stagflation, and a high-yield sleeve when
+growth rises. It was chosen by the author in the earlier backtest of Section~\ref{sec:data}, on 2011--2026
+data, after trying about @@old_trials@@ configurations, and motivated by regime averages and by 2022. It is
+therefore treated here as a hypothesis, frozen exactly as it was, and tested under conditions it was not
+designed for.
+
+\paragraph{Specification frozen before any backtest.} Every choice below was written down before the first
+backtest was run.
+\begin{itemize}
+\item \textbf{Regimes:} the real-time raw classifier of Section~\ref{sec:regimes}; the smoothed persistent and
+revised versions are sensitivity checks.
+\item \textbf{Rebalancing and costs:} monthly to target weights; turnover measured against the weights after the
+previous month's drift; one-way costs of 1--5 basis points per unit of turnover depending on the ETF, zero for
+the fund.
+\item \textbf{Periods:} 2007-04 to 2026-09, when every ETF exists, containing 2008, 2020 and 2022; and 2000-10 to
+2007-03, which contains the dot-com crash and played no part in designing K (sleeves before ETF inception use
+the proxies of Appendix~\ref{app:proxy}; gold futures start in August 2000).
+\end{itemize}
+
+\paragraph{Alternatives.} Each answers a specific question.
+\begin{itemize}
+\item \textbf{S-K}, the static mix with K's average weights over the same period: does K's \emph{timing} add
+anything beyond its average allocation? Over 2007--2026 these weights are @@sk_w@@. S-K is an attribution
+benchmark, not an investable strategy, because its weights use each period's regime frequencies. The fund weight
+is similar in the two periods (@@tr_P1_sk@@ after 2007, @@tr_P0_sk@@ before), so a static mix fixed in advance would
+have been close to it.
+\item \textbf{G}, generic de-risking: 100\% fund in Goldilocks, otherwise 70\% fund, 15\% short Treasuries and 15\%
+gold. Does choosing different hedges in different regimes matter?
+\item \textbf{60/40} fund and intermediate Treasuries: the textbook balanced portfolio.
+\item \textbf{Volatility target}: fund weight $\min(1,\ 15\%/\hat\sigma)$ with $\hat\sigma$ the trailing 12-month
+volatility, the rest in short Treasuries \citep{moreira2017}.
+\item \textbf{10-month trend}: the fund when its total-return index is above its 10-month average, otherwise short
+Treasuries \citep{faber2007,moskowitz2012}.
+\item \textbf{90/10} fund and gold: the simplest permanent hedge.
+\end{itemize}
+
+\paragraph{Attribution.} K minus fund $=$ (S-K minus fund) $+$ (K minus S-K): what the average allocation
+contributes plus what timing contributes, applied to the Sharpe ratio, the maximum drawdown and the average
+return.
+
+\paragraph{Statistics.} Differences in Sharpe ratio and drawdown are resampled with the stationary bootstrap
+\citep{politis1994} (mean block 12 months, 5{,}000 draws, all strategies on the same resampled months), a
+bootstrap version of the test of \citet{ledoit2008}.
+
+\paragraph{Success criterion.} Regime timing adds value only if the 90\% interval of Sharpe(K) $-$ Sharpe(S-K) is
+above zero in both periods, and at least five of six other funds show a positive difference in both periods.
+The criterion was written after the tests of Section~\ref{sec:predict}, which had shown that the fund's
+returns by regime differ before and after 2007; a reader may regard the earlier period's result as partly
+anticipated. Section~\ref{sec:where} shows that the loss there came mainly from regimes other than Stagflation.
+
+\paragraph{Checks of the code.} A 100\% fund strategy reproduces the fund's returns exactly; turnover and costs
+match a hand computation; K's weights match the table every month; the volatility and trend weights do not
+change when later returns are deleted, while a version that peeks one month ahead is flagged by the same test
+(@@tb_ctrl@@ of 18 cuts); @@reg_pass@@ of @@reg_n@@ regression checks pass; and two full runs from raw data give
+identical output.
+
+%=====================================================================
+\section{Results}
+\label{sec:results}
+
+\begin{table}[htbp]
+\centering
+\caption{2007-04 to 2026-09, real-time classifier, after costs. Worst 12m: worst 12-month return; Fund wt.:
+average weight in the fund; Turn.: turnover per year.}
+\label{tab:p1}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Strategy & CAGR & Vol. & Sharpe & Max DD & Worst 12m & Fund wt. & Turn. \\
+\midrule
+@@TAB_B_P1@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{2007--2026 (Table~\ref{tab:p1}).} The fund returns @@P1_f_cagr@@ a year with a volatility of
+@@P1_f_vol@@ and a maximum drawdown of @@P1_f_dd@@, in 2008. K keeps the return (@@P1_k_cagr@@) with @@vol_ratio@@
+times the volatility, and its worst drawdown is @@P1_k_dd@@: its Sharpe ratio is @@P1_k_sh@@ against @@P1_f_sh@@.
+The static mix S-K has a similar volatility (@@P1_s_vol@@) but a lower return (@@P1_s_cagr@@) and a much deeper
+drawdown (@@P1_s_dd@@), so timing explains most of K's advantage here. The 10-month trend rule matches K's
+drawdown (@@P1_t_dd@@) but not its Sharpe ratio (@@P1_t_sh@@).
+
+\begin{table}[htbp]
+\centering
+\caption{2000-10 to 2007-03, real-time classifier, after costs; sleeves before ETF inception use proxies.}
+\label{tab:p0}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Strategy & CAGR & Vol. & Sharpe & Max DD & Worst 12m & Fund wt. & Turn. \\
+\midrule
+@@TAB_B_P0@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{2000--2007, out of sample (Table~\ref{tab:p0}).} The period starts near the top of the technology bubble;
+the fund loses @@P0_f_cagr@@ a year with a drawdown of @@P0_f_dd@@. K loses less (@@P0_k_cagr@@, drawdown
+@@P0_k_dd@@), but its static mix does better still (@@P0_s_cagr@@, drawdown @@P0_s_dd@@): here K's timing made
+things worse. The trend rule is the clear winner (@@P0_t_cagr@@ a year, drawdown @@P0_t_dd@@); its average fund
+weight from October 2000 to December 2002 was @@trend_0002@@, so it sat out the decline.
+
+\begin{table}[htbp]
+\centering
+\caption{Attribution of K minus fund into static allocation (S-K minus fund) and timing (K minus S-K). Sharpe
+ratio; maximum drawdown in percentage points (positive = shallower); arithmetic return in points a year.}
+\label{tab:attr}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrrrr@{}}
+\toprule
+& & \multicolumn{2}{c}{Sharpe} & \multicolumn{2}{c}{Max DD (pp)} & \multicolumn{2}{c}{Return (pp/yr)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+Classifier & Period & Static & Timing & Static & Timing & Static & Timing \\
+\midrule
+@@TAB_B_ATTR@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Static allocation versus timing (Table~\ref{tab:attr}).} With the real-time classifier, static
+allocation adds @@P1_st_sh@@ to the Sharpe ratio in 2007--2026 and @@P0_st_sh@@ in 2000--2007, and makes the
+drawdown shallower in both (@@P1_st_dd@@ and @@P0_st_dd@@ points). Timing adds @@P1_ti_sh@@ in the later period
+and @@P0_ti_sh@@ in the earlier one, and changes the drawdown by @@P1_ti_dd@@ and @@P0_ti_dd@@ points. Static
+allocation costs return after 2007 (@@P1_st_ret@@ points a year) because it holds less of a fund that did very
+well; timing gives some of it back (@@P1_ti_ret@@). The revised-data classifier shows the largest timing gain in
+2007--2026 (@@rev_ti_sh@@): data that were not available flatter the backtest.
+
+\begin{table}[htbp]
+\centering
+\caption{Differences in Sharpe ratio and maximum drawdown (pp, positive = first strategy shallower), with 90\%
+stationary-bootstrap intervals; P$\le$0: share of draws with a Sharpe difference at or below zero.}
+\label{tab:boot}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Period & Difference & Sharpe & 90\% interval & P$\le$0 & Max DD & 90\% interval \\
+\midrule
+@@TAB_B_BOOT@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Is the timing effect real? (Table~\ref{tab:boot}).} In 2007--2026 the timing difference has a 90\%
+interval of @@P1_ti_ci@@, above zero. In 2000--2007 it is @@P0_ti_sh@@ with an interval of @@P0_ti_ci@@, and the
+drawdown difference @@P0_ti_ddci@@ lies entirely below zero: timing made the worst loss deeper. Over 2000--2026
+the interval is @@Pall_ti_ci@@ and includes zero. The static part has intervals of @@P1_st_ci@@ (2007--2026) and
+@@P0_st_ci@@ (2000--2007): it is the more reliable part of the overlay. Against the trend rule, K is better in
+2007--2026 (@@P1_tr_ci@@) and worse in 2000--2007 (@@P0_tr_ci@@).
+
+\paragraph{The deflated Sharpe ratio does not answer this.} Counting the @@old_trials@@ configurations of the
+earlier backtest and the @@dsr_here@@ run here, K's deflated Sharpe ratio \citep{bailey2014} is @@dsr_k@@, but the
+fund alone also scores @@dsr_f@@. Every configuration holds the same equity premium, so the statistic only says
+that the Sharpe ratios are above zero. Whether timing adds value is a question about a difference between
+strategies, which the bootstrap answers.
+
+\begin{table}[htbp]
+\centering
+\caption{K and its static mix S-K with the fund replaced by other equity funds and indices, rules unchanged; the
+last four rows are assets of a different style or region.
+Timing: Sharpe(K) $-$ Sharpe(S-K); DD: max drawdown of K minus S-K (pp, positive = shallower).}
+\label{tab:hold}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+& \multicolumn{4}{c}{2007--2026} & \multicolumn{4}{c}{2000--2007} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Fund replaced by & K & S-K & Timing & DD & K & S-K & Timing & DD \\
+\midrule
+@@TAB_B_HOLD@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Other funds and markets (Table~\ref{tab:hold}).} For the six U.S.\ growth and broad-market hold-outs,
+timing adds @@ho_p1_rng@@ to the Sharpe ratio in 2007--2026 (positive for @@ho_p1_pos@@, interval above zero for
+@@ho_p1_ci@@) and is positive for @@ho_p0_pos@@ in 2000--2007, changing the drawdown by @@ho_p0_dd@@ points. Four assets of a
+different style or region (U.S.\ value, U.S.\ small cap, international, emerging markets) show the same pattern,
+@@new_pat@@: @@new_p1_rng@@ after 2007 and @@new_p0_rng@@ before.
+
+\paragraph{How independent is this evidence?} Not very. The six original hold-outs correlate @@rc_old@@ with the
+fund, and their timing series (K minus S-K, month by month) correlate @@tc_old_mean@@ with each other on average; the
+new assets correlate @@rc_new@@ with the fund and their timing series @@tc_new@@. From the eigenvalues of the
+correlation matrix of timing series, the fund and its six U.S.\ hold-outs behave like @@neff7@@ independent series and all
+eleven like @@neff11@@. The hedge legs are identical and equity markets fall together in the same crises, so ``the
+same for every fund'' is close to one observation repeated. What the hold-outs do show is that the pattern is
+not a feature of growth stocks alone; what they cannot do is add independent episodes. Together with the sign
+change of Section~\ref{sec:predict}, the evidence points to a relation that changed, not to a rule that works.
+
+\paragraph{The criterion fails.} Timing is significant in one period and of the opposite sign in the other, for
+every fund. By the rule fixed before the backtest, regime timing does not add value.
+
+\subsection{A standard alternative: continuous signals}
+\label{sec:model}
+
+K is a hand-made table, so its failure might say little about regime timing in general. We therefore also test a
+standard approach, fixed before it was run. Each month the fund's next excess return is forecast by a regression on
+the two real-time signals themselves (not their signs), fitted on all earlier data from 1992 (first forecast
+@@m_first@@). The fund weight is $\min\{1,\max[0.25,\ 0.60 + (\hat\mu_t - \bar r_t)/(5\hat\sigma_t^2)]\}$, where $\hat\mu_t$ is
+the forecast, $\bar r_t$ the historical mean and $\hat\sigma^2_t$ the historical variance. The rest is held in a fixed
+hedge mix taken from K's table with equal regime weights (@@m_hedge@@), which uses no data; the static comparison
+holds 60\% fund and the same mix.
+
+\begin{table}[htbp]
+\centering
+\caption{Continuous-signal model: out-of-sample forecast quality and the allocation built on it, after costs.}
+\label{tab:model}
+\small
+\begin{tabular}{@{}lrr@{}}
+\toprule
+& 2007--2026 & 2000--2007 \\
+\midrule
+Out-of-sample $R^2$ vs.\ historical mean & @@m_r2_P1@@ & @@m_r2_P0@@ \\
+Clark--West $t$ & @@m_cw_P1@@ & @@m_cw_P0@@ \\
+Sharpe, model / static & @@m_sh_P1@@ / @@sm_sh_P1@@ & @@m_sh_P0@@ / @@sm_sh_P0@@ \\
+Max drawdown, model / static & @@m_dd_P1@@ / @@sm_dd_P1@@ & @@m_dd_P0@@ / @@sm_dd_P0@@ \\
+Timing (Sharpe difference) & @@m_ti_P1@@ & @@m_ti_P0@@ \\
+\quad 90\% bootstrap interval & @@m_ci_P1@@ & @@m_ci_P0@@ \\
+Months with the fund weight at a bound & @@m_bd_P1@@ & @@m_bd_P0@@ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The forecasts have no out-of-sample skill: $R^2$ is @@m_r2_P1@@ and @@m_r2_P0@@ against the historical mean, and the
+Clark--West statistics are @@m_cw_P1@@ and @@m_cw_P0@@ (Table~\ref{tab:model}). The allocation's timing adds @@m_ti_P1@@
+after 2007, with an interval that includes zero, and @@m_ti_P0@@ before. The weight sits at a bound in @@m_bd_P1@@ and
+@@m_bd_P0@@ of months, a sign that the forecasts are noise relative to the risk scaling; the scaling was fixed in
+advance and not tuned. The negative result is therefore not specific to the hand-made table: the same real-time
+signals do not support timing when used in the standard way either.
+
+\subsection{Where the timing gain comes from}
+\label{sec:where}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[ybar, bar width=4.5pt, width=0.95\textwidth, height=4.8cm, xlabel={Year}, ylabel={K $-$ S-K (pp)},
+  xtick={2000,2004,2008,2012,2016,2020,2024}, x tick label style={/pgf/number format/1000 sep=},
+  ymajorgrids, grid style={gray!25}, enlarge x limits=0.03]
+\addplot[fill=black!70, draw=none] coordinates {@@FIG_B_YEAR@@};
+\end{axis}
+\end{tikzpicture}
+\caption{Return of K minus return of its static mix, by calendar year (2000: October--December; 2026:
+January--September). Exploratory.}
+\label{fig:year}
+\end{figure}
+
+The analysis in this subsection was done after the pre-specified tests and is descriptive.
+
+\paragraph{By year.} The largest timing gains (Figure~\ref{fig:year}) are @@yr_top@@; the largest losses
+@@yr_bot@@. 2008 alone contributes @@yr_2008@@ points and 2000--2003 together @@yr_0003@@. Removing October 2007 to
+March 2009 from the later period, the Sharpe ratios become @@wo8_k@@ for K, @@wo8_s@@ for S-K and @@wo8_f@@ for the
+fund: timing still helps (@@wo8_ti@@), by about half as much.
+
+\paragraph{By regime.} Summing K minus S-K over the months in each regime (percentage points), the later period
+gives Goldilocks @@tr_P1_go@@, Disinflation @@tr_P1_di@@, Stagflation @@tr_P1_st@@ and Reflation @@tr_P1_re@@; the
+earlier period gives Goldilocks @@tr_P0_go@@, Disinflation @@tr_P0_di@@, Stagflation @@tr_P0_st@@ and Reflation
+@@tr_P0_re@@. K holds 90\% and 80\% of the fund in Goldilocks and Disinflation against @@tr_P1_sk@@ for its static mix,
+so most of its timing is a bet that these regimes are good for growth stocks. After 2007 they were (the fund
+earned @@tf_P1_go@@ and @@tf_P1_di@@ a year in them); from 2000 to 2007 they were not (@@tf_P0_go@@ and
+@@tf_P0_di@@). Cutting the fund in Stagflation mattered less than the design of K suggests.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.95\textwidth, height=5.8cm, ymode=log, xmin=2000.75, xmax=2026.75,
+  xtick={2001,2004,2008,2012,2016,2020,2024}, x tick label style={/pgf/number format/1000 sep=},
+  ylabel={Value of \$1 (log scale)}, legend pos=north west, legend style={font=\small}, grid=major, grid style={gray!20}]
+\addplot[thick, black] coordinates {@@FIG_B_K@@}; \addlegendentry{K}
+\addplot[thick, black, dashed] coordinates {@@FIG_B_S@@}; \addlegendentry{S-K (static)}
+\addplot[thick, gray] coordinates {@@FIG_B_F@@}; \addlegendentry{Fund}
+\addplot[thick, gray, dotted] coordinates {@@FIG_B_T@@}; \addlegendentry{10-month trend}
+\end{axis}
+\end{tikzpicture}
+\caption{Growth of \$1, 2000-10 to 2026-09, after costs, quarter-end values.}
+\label{fig:wealth}
+\end{figure}
+
+\subsection{Costs and implementation}
+
+\begin{table}[htbp]
+\centering
+\caption{Sharpe ratio and cost drag (bps a year) of K at one, two and five times base costs; Sharpe ratio of S-K
+for comparison.}
+\label{tab:cost}
+\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{K, 2007--2026} & \multicolumn{2}{c}{K, 2000--2007} & \multicolumn{2}{c}{S-K Sharpe} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Costs & Sharpe & bps/yr & Sharpe & bps/yr & 2007--26 & 2000--07 \\
+\midrule
+@@TAB_B_COST@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+ETF trading costs do not decide anything: K turns over @@k_turn@@ times its value a year, which costs @@cost_k_p1@@
+basis points a year at base costs and @@cost_k_x5@@ at five times base (Table~\ref{tab:cost}). Two costs not in
+the table matter more. Mutual funds restrict frequent purchases and redemptions, and moving 30--75\% of a
+portfolio in and out of a fund several times a year may breach those policies. In a taxable account each cut
+realises capital gains. Both favour the static mix, which only rebalances (turnover @@s_turn@@ a year).
+
+%=====================================================================
+\section{Implications}
+
+\paragraph{For research on regime allocation.} Build regimes from real-time data; with revised data a third of
+the labels in a typical backtest were not knowable, and growth data are the problem. Do not fit allocations to
+regime means: a table estimated on 2007--2026 would cut growth equity in Stagflation, one estimated on 1992--2007
+would raise it. Show that a rule works in a period that was not used to design it, and separate its timing from
+its average allocation.
+
+\paragraph{For the investor.} Holding about 60\% of the fund with gold, short Treasuries, high yield and dollars,
+without timing, reduced the worst drawdown and raised the Sharpe ratio in both periods; this is the robust part.
+The timing amounts to holding more growth equity when the classifier says Goldilocks or Disinflation and much
+less in Stagflation. It paid off after 2007 and cost money in 2000--2007; adopting it is a bet that the
+post-2007 relation continues. A 10-month trend rule, which needs no macro data, was the best strategy in
+2000--2007 and matched the overlay's drawdown afterwards.
+
+%=====================================================================
+\section{Limitations}
+
+\paragraph{Few episodes.} Each period is dominated by one crash, 2000--2002 and 2008. Bootstrap intervals describe
+sampling noise around one history, and the hold-out assets behave like about @@neff11@@ independent series; no
+statistical method creates more crises.
+
+\paragraph{The overlay was designed on 2011--2026.} The later period overlaps the data used to choose K, so its
+results there are partly in sample. Only 2000--2007 is fully out of sample, and it is @@n_p0@@ months long.
+
+\paragraph{Proxies.} Before 2007 the sleeves are mutual funds and futures indices. Their tracking errors are small
+for Treasuries, gold and the dollar but larger for high yield and commodities (Table~\ref{tab:proxy}).
+
+\paragraph{One growth series, one horizon, one country.} Industrial production covers a shrinking share of the
+economy; real-time employment or GDP vintages could give a better growth signal. We test next-month returns
+only, and only in the United States.
+
+%=====================================================================
+\section{Conclusion}
+
+A growth--inflation classifier run on the data available at the time differs from the backtested version in a
+third of months and does not forecast next month's returns of any of twelve asset classes after accounting for
+multiple tests. For growth equities the effect of Stagflation reverses sign around 2007. A regime overlay for a
+concentrated growth fund, tested under a frozen specification, improves risk-adjusted returns in 2007--2026,
+but its timing hurts in 2000--2007 for the fund and for ten other equity assets, while its average allocation
+helps in both. A standard predictive regression on the same signals has no out-of-sample skill, and the
+stock--bond correlation does not explain the change.
+The defensible recommendation is static diversification, possibly with a simple trend rule; regime timing is a
+view on the current era, not a backtested improvement.
+
+\appendix
+\section{Proxies before ETF inception}
+\label{app:proxy}
+
+Each ETF is replaced before its first full month by a long-history series. For each pair the version (with or
+without adding the T-bill rate, for futures-based indices) with the lower tracking error on the 2007--2026
+overlap was chosen before any backtest.
+
+\begin{table}[htbp]
+\centering
+\caption{Proxies compared with the ETF on 2007-05 to 2026-09: correlation of monthly returns, tracking error,
+and ETF minus proxy average return per year.}
+\label{tab:proxy}
+\small
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+ETF & Proxy & Corr. & TE & ETF $-$ proxy \\
+\midrule
+@@TAB_B_PROXY@@
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{thebibliography}{99}
+%%BIB%%
+\end{thebibliography}
+
+\end{document}

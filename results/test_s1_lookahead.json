@@ -1,0 +1,8 @@
+{
+ "cuts": 60,
+ "identical_raw": 60,
+ "identical_smooth_persist": 60,
+ "positive_control_cuts_with_changed_signal": 60,
+ "positive_control_cuts_flagged_by_label_test": 60,
+ "pass": true
+}

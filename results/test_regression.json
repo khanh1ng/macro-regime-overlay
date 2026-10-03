@@ -1,0 +1,27 @@
+{
+ "checks": {
+  "s0 all data checks pass": true,
+  "s0 JLGMX 10y within 0.1pp of report": true,
+  "s0 old 2018Q4 claim not reproduced": true,
+  "s1 lookahead test passed": true,
+  "s1 rt vs revised agreement 0.818": true,
+  "s2 no asset below Bonferroni (rt_raw)": true,
+  "s2 fund Stagflation positive before 2007": true,
+  "s2 fund Stagflation negative after 2007": true,
+  "s3 backtest tests passed": true,
+  "s3 P1 K Sharpe 1.069": true,
+  "s3 P0 K Sharpe -0.355": true,
+  "s3 Pold fund CAGR equals old notebook 16.81": true,
+  "s5 criterion fails": true,
+  "s5 P1 timing CI above 0": true,
+  "s5 P0 timing negative": true,
+  "s5 hold-outs P1 6/6, P0 0/6": true,
+  "s7 hold-out timing series behave like ~1 series": true,
+  "s7 new assets 4/4 same pattern": true,
+  "s8 continuous model fails": true,
+  "s9 mechanism not supported": true,
+  "s6 2008 largest timing year": true
+ },
+ "n": 21,
+ "passed": 21
+}

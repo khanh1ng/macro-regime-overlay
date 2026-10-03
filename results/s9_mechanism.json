@@ -1,0 +1,88 @@
+{
+ "window_months": 36,
+ "first_decision": "1995-02",
+ "months": 379,
+ "share_pos": {
+  "pre_2007": 0.476,
+  "post_2007": 0.291
+ },
+ "stag_share_pos": {
+  "pre_2007": 0.429,
+  "post_2007": 0.241
+ },
+ "full": {
+  "cells": {
+   "Goldilocks|pos": 27,
+   "Reflation|pos": 43,
+   "Disinflation|pos": 41,
+   "Stagflation|pos": 26,
+   "Goldilocks|neg": 43,
+   "Reflation|neg": 72,
+   "Disinflation|neg": 67,
+   "Stagflation|neg": 60
+  },
+  "pos": {
+   "stag_minus_others_ann_pct": 2.15,
+   "t": 0.16
+  },
+  "neg": {
+   "stag_minus_others_ann_pct": -12.04,
+   "t": -1.25
+  },
+  "pos_minus_neg": {
+   "ann_pct": 14.2,
+   "t": 0.86
+  }
+ },
+ "pre_2007": {
+  "cells": {
+   "Goldilocks|pos": 10,
+   "Reflation|pos": 27,
+   "Disinflation|pos": 20,
+   "Stagflation|pos": 12,
+   "Goldilocks|neg": 16,
+   "Reflation|neg": 21,
+   "Disinflation|neg": 23,
+   "Stagflation|neg": 16
+  },
+  "pos": {
+   "stag_minus_others_ann_pct": 20.48,
+   "t": 0.94
+  },
+  "neg": {
+   "stag_minus_others_ann_pct": 11.97,
+   "t": 1.26
+  },
+  "pos_minus_neg": {
+   "ann_pct": 8.51,
+   "t": 0.36
+  }
+ },
+ "post_2007": {
+  "cells": {
+   "Goldilocks|pos": 17,
+   "Reflation|pos": 16,
+   "Disinflation|pos": 21,
+   "Stagflation|pos": 14,
+   "Goldilocks|neg": 27,
+   "Reflation|neg": 51,
+   "Disinflation|neg": 44,
+   "Stagflation|neg": 44
+  },
+  "pos": {
+   "stag_minus_others_ann_pct": -10.87,
+   "t": -0.92
+  },
+  "neg": {
+   "stag_minus_others_ann_pct": -24.4,
+   "t": -2.05
+  },
+  "pos_minus_neg": {
+   "ann_pct": 13.53,
+   "t": 0.79
+  }
+ },
+ "within_subperiod_testable": 2,
+ "supported": false,
+ "verdict": "not supported"
+}

@@ -1,0 +1,270 @@
+{
+ "summary": {
+  "rt_raw": {
+   "months": 440,
+   "first": "1990-01",
+   "switches": 122,
+   "mean_spell": 3.58,
+   "median_spell": 2.0,
+   "share": {
+    "Goldilocks": 0.207,
+    "Reflation": 0.305,
+    "Disinflation": 0.268,
+    "Stagflation": 0.22
+   }
+  },
+  "rt_smooth3": {
+   "months": 438,
+   "first": "1990-03",
+   "switches": 94,
+   "mean_spell": 4.61,
+   "median_spell": 4.0,
+   "share": {
+    "Goldilocks": 0.205,
+    "Reflation": 0.299,
+    "Disinflation": 0.283,
+    "Stagflation": 0.212
+   }
+  },
+  "rt_smooth3_persist3": {
+   "months": 438,
+   "first": "1990-03",
+   "switches": 58,
+   "mean_spell": 7.42,
+   "median_spell": 7.0,
+   "share": {
+    "Goldilocks": 0.201,
+    "Reflation": 0.32,
+    "Disinflation": 0.283,
+    "Stagflation": 0.196
+   }
+  },
+  "rt_raw_persist3": {
+   "months": 440,
+   "first": "1990-01",
+   "switches": 55,
+   "mean_spell": 7.86,
+   "median_spell": 7.0,
+   "share": {
+    "Goldilocks": 0.193,
+    "Reflation": 0.352,
+    "Disinflation": 0.234,
+    "Stagflation": 0.22
+   }
+  },
+  "rt_raw_extralag1": {
+   "months": 441,
+   "first": "1990-01",
+   "switches": 122,
+   "mean_spell": 3.59,
+   "median_spell": 2.0,
+   "share": {
+    "Goldilocks": 0.206,
+    "Reflation": 0.304,
+    "Disinflation": 0.27,
+    "Stagflation": 0.22
+   }
+  },
+  "rt_raw_extralag2": {
+   "months": 441,
+   "first": "1990-01",
+   "switches": 121,
+   "mean_spell": 3.61,
+   "median_spell": 2.5,
+   "share": {
+    "Goldilocks": 0.206,
+    "Reflation": 0.302,
+    "Disinflation": 0.272,
+    "Stagflation": 0.22
+   }
+  },
+  "rt_raw_extralag3": {
+   "months": 441,
+   "first": "1990-01",
+   "switches": 121,
+   "mean_spell": 3.61,
+   "median_spell": 2.5,
+   "share": {
+    "Goldilocks": 0.206,
+    "Reflation": 0.302,
+    "Disinflation": 0.274,
+    "Stagflation": 0.218
+   }
+  },
+  "revised_lag1": {
+   "months": 440,
+   "first": "1990-01",
+   "switches": 137,
+   "mean_spell": 3.19,
+   "median_spell": 2.0,
+   "share": {
+    "Goldilocks": 0.209,
+    "Reflation": 0.298,
+    "Disinflation": 0.261,
+    "Stagflation": 0.232
+   }
+  },
+  "revised_lag2": {
+   "months": 440,
+   "first": "1990-01",
+   "switches": 137,
+   "mean_spell": 3.19,
+   "median_spell": 2.0,
+   "share": {
+    "Goldilocks": 0.209,
+    "Reflation": 0.295,
+    "Disinflation": 0.264,
+    "Stagflation": 0.232
+   }
+  },
+  "revised_lag2_smooth3_persist3": {
+   "months": 439,
+   "first": "1990-03",
+   "switches": 57,
+   "mean_spell": 7.57,
+   "median_spell": 7.5,
+   "share": {
+    "Goldilocks": 0.18,
+    "Reflation": 0.298,
+    "Disinflation": 0.319,
+    "Stagflation": 0.203
+   }
+  }
+ },
+ "agreement_with_rt_raw": {
+  "rt_raw": {
+   "share": 1.0,
+   "months": 440
+  },
+  "rt_smooth3": {
+   "share": 0.772,
+   "months": 438
+  },
+  "rt_smooth3_persist3": {
+   "share": 0.482,
+   "months": 438
+  },
+  "rt_raw_persist3": {
+   "share": 0.568,
+   "months": 440
+  },
+  "rt_raw_extralag1": {
+   "share": 0.723,
+   "months": 440
+  },
+  "rt_raw_extralag2": {
+   "share": 0.561,
+   "months": 440
+  },
+  "rt_raw_extralag3": {
+   "share": 0.452,
+   "months": 440
+  },
+  "revised_lag1": {
+   "share": 0.818,
+   "months": 440
+  },
+  "revised_lag2": {
+   "share": 0.673,
+   "months": 440
+  },
+  "revised_lag2_smooth3_persist3": {
+   "share": 0.381,
+   "months": 438
+  }
+ },
+ "agreement_rt_vs_revised_same_rules": {
+  "raw, revised lag 1": {
+   "share": 0.818,
+   "months": 440
+  },
+  "smooth+persist, revised lag 2": {
+   "share": 0.701,
+   "months": 438
+  }
+ },
+ "sign_agreement_by_component_lag1": {
+  "growth": 0.836,
+  "inflation": 0.977,
+  "growth_corr": 0.957,
+  "inflation_corr": 0.997
+ },
+ "transition_rt_raw": {
+  "Goldilocks": {
+   "Goldilocks": 0.659,
+   "Reflation": 0.113,
+   "Disinflation": 0.085,
+   "Stagflation": 0.062
+  },
+  "Reflation": {
+   "Goldilocks": 0.143,
+   "Reflation": 0.805,
+   "Disinflation": 0.034,
+   "Stagflation": 0.103
+  },
+  "Disinflation": {
+   "Goldilocks": 0.165,
+   "Reflation": 0.008,
+   "Disinflation": 0.72,
+   "Stagflation": 0.165
+  },
+  "Stagflation": {
+   "Goldilocks": 0.033,
+   "Reflation": 0.075,
+   "Disinflation": 0.161,
+   "Stagflation": 0.67
+  }
+ },
+ "longest_spells_rt_smooth3_persist3": [
+  {
+   "regime": "Disinflation",
+   "start": "2023-01",
+   "months": 20
+  },
+  {
+   "regime": "Reflation",
+   "start": "1999-09",
+   "months": 19
+  },
+  {
+   "regime": "Goldilocks",
+   "start": "2024-09",
+   "months": 17
+  },
+  {
+   "regime": "Stagflation",
+   "start": "2005-03",
+   "months": 15
+  },
+  {
+   "regime": "Reflation",
+   "start": "1992-08",
+   "months": 14
+  },
+  {
+   "regime": "Disinflation",
+   "start": "2001-04",
+   "months": 14
+  },
+  {
+   "regime": "Disinflation",
+   "start": "2012-11",
+   "months": 14
+  },
+  {
+   "regime": "Stagflation",
+   "start": "2015-12",
+   "months": 12
+  },
+  {
+   "regime": "Reflation",
+   "start": "2021-02",
+   "months": 12
+  },
+  {
+   "regime": "Reflation",
+   "start": "2018-02",
+   "months": 12
+  }
+ ]
+}

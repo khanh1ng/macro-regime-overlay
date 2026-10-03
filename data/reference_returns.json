@@ -1,0 +1,12 @@
+{
+  "source": "JPMorgan Trust II, Form N-CSR, annual shareholder report for the period ended June 30, 2026, https://www.sec.gov/Archives/edgar/data/0000763852/000119312526385073/d115295dncsr.htm",
+  "as_of": "2026-06-30",
+  "note": "Average annual total returns in percent, reinvesting all dividends and capital gains.",
+  "funds": {
+    "JLGMX": {"class": "R6", "1y": 15.56, "5y": 12.66, "10y": 20.30},
+    "SEEGX": {"class": "I", "1y": 15.26, "5y": 12.38, "10y": 19.99}
+  },
+  "index": {
+    "Russell 1000 Growth": {"1y": 17.71, "5y": 13.71, "10y": 18.58, "compare_to": "IWF", "iwf_expense_ratio_pct": 0.19}
+  }
+}

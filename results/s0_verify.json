@@ -1,0 +1,319 @@
+{
+ "V1_vs_annual_report": {
+  "JLGMX_1y": {
+   "yahoo": 15.53,
+   "report": 15.56,
+   "diff": -0.03
+  },
+  "JLGMX_5y": {
+   "yahoo": 12.6,
+   "report": 12.66,
+   "diff": -0.06
+  },
+  "JLGMX_10y": {
+   "yahoo": 20.29,
+   "report": 20.3,
+   "diff": -0.01
+  },
+  "SEEGX_1y": {
+   "yahoo": 15.23,
+   "report": 15.26,
+   "diff": -0.03
+  },
+  "SEEGX_5y": {
+   "yahoo": 12.31,
+   "report": 12.38,
+   "diff": -0.07
+  },
+  "SEEGX_10y": {
+   "yahoo": 19.98,
+   "report": 19.99,
+   "diff": -0.01
+  },
+  "IWF_vs_R1000G_1y": {
+   "yahoo": 17.41,
+   "index": 17.71,
+   "diff": -0.3
+  },
+  "IWF_vs_R1000G_5y": {
+   "yahoo": 13.51,
+   "index": 13.71,
+   "diff": -0.2
+  },
+  "IWF_vs_R1000G_10y": {
+   "yahoo": 18.36,
+   "index": 18.58,
+   "diff": -0.22
+  }
+ },
+ "V2_adjclose_vs_rebuilt": {
+  "JLGMX": {
+   "days": 3980,
+   "share_within_1bp": 0.99749,
+   "max_abs_diff": 0.00255
+  },
+  "SEEGX": {
+   "days": 8706,
+   "share_within_1bp": 0.99828,
+   "max_abs_diff": 0.0037
+  },
+  "IWF": {
+   "days": 6623,
+   "share_within_1bp": 1.0,
+   "max_abs_diff": 0.0001
+  },
+  "QQQ": {
+   "days": 6931,
+   "share_within_1bp": 1.0,
+   "max_abs_diff": 7e-05
+  },
+  "SPY": {
+   "days": 8473,
+   "share_within_1bp": 0.99941,
+   "max_abs_diff": 0.00025
+  },
+  "FBGRX": {
+   "days": 9252,
+   "share_within_1bp": 0.99708,
+   "max_abs_diff": 0.00162
+  },
+  "TRBCX": {
+   "days": 8368,
+   "share_within_1bp": 0.99892,
+   "max_abs_diff": 0.00139
+  },
+  "AGTHX": {
+   "days": 9252,
+   "share_within_1bp": 0.9973,
+   "max_abs_diff": 0.00307
+  },
+  "GLD": {
+   "days": 5498,
+   "share_within_1bp": 1.0,
+   "max_abs_diff": 0.0
+  },
+  "SHY": {
+   "days": 6080,
+   "share_within_1bp": 1.0,
+   "max_abs_diff": 2e-05
+  },
+  "IEF": {
+   "days": 6080,
+   "share_within_1bp": 0.99984,
+   "max_abs_diff": 0.00012
+  },
+  "TLT": {
+   "days": 6080,
+   "share_within_1bp": 0.99984,
+   "max_abs_diff": 0.00013
+  },
+  "TIP": {
+   "days": 5738,
+   "share_within_1bp": 0.99965,
+   "max_abs_diff": 0.00011
+  },
+  "HYG": {
+   "days": 4898,
+   "share_within_1bp": 0.99816,
+   "max_abs_diff": 0.00037
+  },
+  "UUP": {
+   "days": 4926,
+   "share_within_1bp": 0.99939,
+   "max_abs_diff": 0.00016
+  },
+  "DBC": {
+   "days": 5193,
+   "share_within_1bp": 0.99884,
+   "max_abs_diff": 0.00044
+  }
+ },
+ "V3_share_class_gap_pp": {
+  "2011": 0.285,
+  "2012": 0.267,
+  "2013": 0.34,
+  "2014": 0.266,
+  "2015": 0.328,
+  "2016": 0.307,
+  "2017": 0.38,
+  "2018": 0.242,
+  "2019": 0.346,
+  "2020": 0.375,
+  "2021": 0.31,
+  "2022": 0.195,
+  "2023": 0.324,
+  "2024": 0.331,
+  "2025": 0.29
+ },
+ "V3_monthly_gap_max_abs_pp": 0.071,
+ "V4_unexplained_drops": {
+  "JLGMX": [],
+  "SEEGX": [],
+  "FBGRX": [],
+  "TRBCX": [],
+  "AGTHX": []
+ },
+ "V5_coverage": {
+  "JLGMX": {
+   "first": "2010-11-30",
+   "last": "2026-09-29",
+   "days": 3981,
+   "zero_return_share": 0.0161,
+   "longest_zero_run": 1
+  },
+  "SEEGX": {
+   "first": "1992-02-28",
+   "last": "2026-09-29",
+   "days": 8707,
+   "zero_return_share": 0.0269,
+   "longest_zero_run": 2
+  },
+  "IWF": {
+   "first": "2000-05-26",
+   "last": "2026-09-29",
+   "days": 6624,
+   "zero_return_share": 0.0092,
+   "longest_zero_run": 1
+  },
+  "QQQ": {
+   "first": "1999-03-10",
+   "last": "2026-09-29",
+   "days": 6932,
+   "zero_return_share": 0.0055,
+   "longest_zero_run": 2
+  },
+  "SPY": {
+   "first": "1993-01-29",
+   "last": "2026-09-29",
+   "days": 8474,
+   "zero_return_share": 0.0073,
+   "longest_zero_run": 2
+  },
+  "FBGRX": {
+   "first": "1990-01-02",
+   "last": "2026-09-29",
+   "days": 9253,
+   "zero_return_share": 0.0116,
+   "longest_zero_run": 2
+  },
+  "TRBCX": {
+   "first": "1993-06-30",
+   "last": "2026-09-29",
+   "days": 8369,
+   "zero_return_share": 0.0166,
+   "longest_zero_run": 2
+  },
+  "AGTHX": {
+   "first": "1990-01-02",
+   "last": "2026-09-29",
+   "days": 9253,
+   "zero_return_share": 0.0202,
+   "longest_zero_run": 3
+  },
+  "GLD": {
+   "first": "2004-11-18",
+   "last": "2026-09-29",
+   "days": 5499,
+   "zero_return_share": 0.0036,
+   "longest_zero_run": 1
+  },
+  "SHY": {
+   "first": "2002-07-30",
+   "last": "2026-09-29",
+   "days": 6081,
+   "zero_return_share": 0.0817,
+   "longest_zero_run": 4
+  },
+  "IEF": {
+   "first": "2002-07-30",
+   "last": "2026-09-29",
+   "days": 6081,
+   "zero_return_share": 0.0094,
+   "longest_zero_run": 2
+  },
+  "TLT": {
+   "first": "2002-07-30",
+   "last": "2026-09-29",
+   "days": 6081,
+   "zero_return_share": 0.0048,
+   "longest_zero_run": 1
+  },
+  "TIP": {
+   "first": "2003-12-05",
+   "last": "2026-09-29",
+   "days": 5739,
+   "zero_return_share": 0.0153,
+   "longest_zero_run": 2
+  },
+  "HYG": {
+   "first": "2007-04-11",
+   "last": "2026-09-29",
+   "days": 4899,
+   "zero_return_share": 0.0151,
+   "longest_zero_run": 3
+  },
+  "UUP": {
+   "first": "2007-03-01",
+   "last": "2026-09-29",
+   "days": 4927,
+   "zero_return_share": 0.0445,
+   "longest_zero_run": 3
+  },
+  "DBC": {
+   "first": "2006-02-06",
+   "last": "2026-09-29",
+   "days": 5194,
+   "zero_return_share": 0.0164,
+   "longest_zero_run": 2
+  }
+ },
+ "V6_ip_vintages": {
+  "first_vintage": "1962-11",
+  "last_vintage": "2026-08",
+  "n_vintages": 766,
+  "lag_last_obs_months_counts": {
+   "1": 764,
+   "2": 1,
+   "3": 1
+  }
+ },
+ "V6_ip_last_vintage_vs_fred": {
+  "months": 955,
+  "max_abs_rel_diff": 0.00332
+ },
+ "V6_cpi": {
+  "nsa_last": "2026-08",
+  "corr_yoy_nsa_sa": 0.9992,
+  "max_abs_gap_pp": 0.266
+ },
+ "V6_rf": {
+  "first": "1947-01",
+  "last": "2026-09"
+ },
+ "V6_ip_late_vintages": {
+  "2025-10": "2025-08",
+  "2025-11": "2025-08"
+ },
+ "V7_old_claims_recomputed": {
+  "2018Q4 (Oct-Dec) old -29.07": -18.52,
+  "2020 Feb-Mar old -14.88": -14.88,
+  "2022 Jan-Oct old -12.56": -23.37,
+  "max drawdown daily": -31.82,
+  "max drawdown daily date": "2020-03-23",
+  "max drawdown month-end": -27.81,
+  "max drawdown month-end date": "2022-09-30"
+ },
+ "checks": {
+  "V1 fund returns within 0.5pp of report": true,
+  "V1 IWF within 0.5pp of index (fee 0.19pp)": true,
+  "V2 >=99.5% of days within 1bp for every ticker": true,
+  "V3 yearly R6-minus-I gap in [-0.1, 0.6] pp every year": true,
+  "V4 no unexplained drops in fund series": true,
+  "V5 every series ends on or after 2026-09-25": true,
+  "V5 no run of 5+ unchanged days": true,
+  "V6 every IP vintage ends 1 month before its date, except the 2025 shutdown delay": true,
+  "V6 last IP vintage matches current FRED INDPRO within 0.5%": true,
+  "V6 CPI NSA and SA year-on-year agree (corr > 0.99)": true
+ },
+ "all_pass": true
+}
