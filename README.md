@@ -18,10 +18,11 @@ chosen after many trials. This project tests the overlay with all three removed.
 
 * **The overlay works where it matters most.** In 2007–2026 it keeps the fund's return (14.3% vs
   14.1% a year), raises the Sharpe ratio from 0.75 to 1.07, and cuts the worst drawdown from
-  −47.6% to −18.2%; the Sharpe gain is significant (+0.32, 90% interval [+0.06, +0.55]).
+  −47.6% to −18.2%; the Sharpe gain is significant (+0.32, 90% interval [+0.06, +0.55]). This period overlaps the
+  2011–2026 data the allocation table was designed on, so it is partly in sample.
 * **Diversification is the robust part.** Holding the overlay's average weights, without any timing,
   raises the Sharpe ratio and makes the drawdown shallower in both periods tested, including
-  2000–2007, which was not used to design it.
+  2000–2007, the only period fully out of sample.
 * **Regime timing depends on the era.** It adds +0.22 Sharpe after 2007, but lowers it by −0.18 in
   2000–2007, because the growth fund's response to Stagflation changed sign around 2007.
 * **Real-time data matter.** A typical backtest's regimes agree with what was knowable in only
