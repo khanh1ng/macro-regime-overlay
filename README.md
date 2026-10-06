@@ -8,6 +8,9 @@ dollars when growth slows and inflation rises. Every regime uses only data publi
 (766 vintages of industrial production, consumer prices that are never revised), and the
 specification was frozen before any backtest.
 
+*Original backtest spring 2026; re-tested with real-time data and a frozen specification, October
+2026.*
+
 **Paper:** [`paper/paper.pdf`](paper/paper.pdf) (15 pages).
 **Every step, with what was fixed before it ran:** [`docs/RESEARCH_LOG.md`](docs/RESEARCH_LOG.md).
 
