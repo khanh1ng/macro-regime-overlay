@@ -527,3 +527,11 @@ All conclusions are unchanged. The papers use the regenerated values.
 - Refactor check: moving the bootstrap into `mo/boot.py` left `s5`, `s7` and `s8` outputs byte-identical.
 
 **Step 13: PASS.**
+
+## Wording pass for precision (2026-10-07)
+
+* The abstract, the summary table and the implications said the average allocation "helps in both periods".
+  Its Sharpe gain is significant before 2007 and over 2000–2026 but not after 2007 (interval includes zero);
+  its drawdown reduction is significant in both. All three passages now say exactly that, with intervals.
+* The conclusion now notes that the 2007–2026 result is partly in sample.
+* The README top is generated from `results/paper_values.json` by `scripts/report_readme.py`.

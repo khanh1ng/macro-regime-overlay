@@ -36,8 +36,8 @@ same timing lowers the Sharpe ratio by $-0.18$ and deepens the drawdown, for the
 regions; these, however, behave like little more than one independent series. A standard predictive
 regression on the same real-time signals has no out-of-sample skill and adds no value either, and the
 stock--bond correlation does not explain the change. Holding the overlay's average weights without timing
-helps in both periods. The
-robust recommendation is static diversification; regime timing is a bet on the post-2007 era.
+reduces the drawdown in both periods and raises the Sharpe ratio over 2000--2026 ($+0.14$, 90\% interval
+$[+0.05,\ +0.22]$). The robust recommendation is static diversification; regime timing is a bet on the post-2007 era.
 \end{abstract}
 
 %=====================================================================
@@ -90,7 +90,7 @@ Do real-time regimes forecast next month's returns? & 0 of 36 tests pass a Bonfe
 Is the growth fund's Stagflation effect stable? & $+14.0\%$ a year before 2007, $-20.9\%$ after \\
 Does the overlay's \emph{timing} add value, 2007--2026? & Sharpe $+0.22$, 90\% interval $[+0.03,\ +0.41]$ \\
 \quad and in 2000--2007? & Sharpe $-0.18$, 90\% interval $[-0.32,\ +0.05]$ \\
-Does its \emph{average allocation} add value? & Sharpe $+0.09$ (2007--2026) and $+0.22$ (2000--2007) \\
+Does its \emph{average allocation} add value? & Sharpe $+0.09$ $[-0.01,\ +0.19]$ (2007--2026), $+0.22$ $[+0.11,\ +0.39]$ (2000--2007) \\
 Same pattern for ten other equity assets? & Yes for all ten, but they behave like $1.2$ independent series \\
 Does a predictive regression do better? & No: out-of-sample $R^2$ $-0.23\%$ and $-3.31\%$ \\
 Does the stock--bond correlation explain the sign change? & No: within each period both states have the same sign \\
@@ -805,7 +805,8 @@ would raise it. Show that a rule works in a period that was not used to design i
 its average allocation.
 
 \paragraph{For the investor.} Holding about 60\% of the fund with gold, short Treasuries, high yield and dollars,
-without timing, reduced the worst drawdown and raised the Sharpe ratio in both periods; this is the robust part.
+without timing, reduced the worst drawdown in both periods and raised the Sharpe ratio, significantly before
+2007 and over 2000--2026 (after 2007 the interval includes zero); this is the robust part.
 The timing amounts to holding more growth equity when the classifier says Goldilocks or Disinflation and much
 less in Stagflation. It paid off after 2007 and cost money in 2000--2007; adopting it is a bet that the
 post-2007 relation continues. A 10-month trend rule, which needs no macro data, was the best strategy in
@@ -834,9 +835,9 @@ only, and only in the United States.
 A growth--inflation classifier run on the data available at the time differs from the backtested version in a
 third of months and does not forecast next month's returns of any of twelve asset classes after accounting for
 multiple tests. For growth equities the effect of Stagflation reverses sign around 2007. A regime overlay for a
-concentrated growth fund, tested under a frozen specification, improves risk-adjusted returns in 2007--2026,
-but its timing hurts in 2000--2007 for the fund and for ten other equity assets, while its average allocation
-helps in both. A standard predictive regression on the same signals has no out-of-sample skill, and the
+concentrated growth fund, tested under a frozen specification, improves risk-adjusted returns in 2007--2026
+(partly in sample), but its timing hurts in 2000--2007 for the fund and for ten other equity assets, while its
+average allocation reduces the drawdown in both periods and raises the Sharpe ratio over the whole sample. A standard predictive regression on the same signals has no out-of-sample skill, and the
 stock--bond correlation does not explain the change.
 The defensible recommendation is static diversification, possibly with a simple trend rule; regime timing is a
 view on the current era, not a backtested improvement.
