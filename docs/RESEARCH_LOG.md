@@ -535,3 +535,25 @@ All conclusions are unchanged. The papers use the regenerated values.
   its drawdown reduction is significant in both. All three passages now say exactly that, with intervals.
 * The conclusion now notes that the 2007–2026 result is partly in sample.
 * The README top is generated from `results/paper_values.json` by `scripts/report_readme.py`.
+
+## Step 11: robustness of the inference (specification written before running, 2026-10-07)
+
+**Reason.** An audit of the statistics found five weak points: (1) the 2000–2007 bootstrap rests on 78
+months, about six or seven mean-length blocks; (2) no sensitivity to block length was reported; (3)
+bootstrap intervals for maximum drawdown are weak, because drawdown depends on path order and each
+period is dominated by one crash; (4) the 2007–2026 result may rest on 2008; (5) "the sign reverses"
+(H3) was asserted without a test of the difference between periods.
+
+**Checks, fixed now.**
+1. Ledoit–Wolf (2008) test of Sharpe-ratio differences with a Newey–West (6 lags, Bartlett) covariance
+   of first and second moments, for K − fund, S-K − fund and K − S-K in each period; two-sided p-values.
+2. Stationary-bootstrap Sharpe intervals with mean blocks of 6, 12 and 24 months.
+3. P1 with October 2007 to March 2009 removed: point estimates and 12-month-block intervals for the
+   same three differences.
+4. H3: difference between the pre- and post-2007 Stagflation contrasts of the fund, z = (a − b) /
+   √(se_a² + se_b²) with the HAC standard errors of Step 2 (the periods do not overlap). The split date
+   2007-04 is the start of the joint ETF sample, fixed in Step 0 before any regime result was seen.
+
+**How verdicts change, fixed now.** A Sharpe difference is called significant only if the 90% bootstrap
+interval excludes zero for all three block lengths **and** the Ledoit–Wolf two-sided p < 0.10.
+Drawdown differences are reported as point estimates and no longer described as significant.
