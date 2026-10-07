@@ -606,3 +606,19 @@ significant only if every 90% bootstrap interval excludes zero and Ledoit–Wolf
 **Market-regime timing adds value** only if M1's timing difference is significant and positive in both
 2007–2026 and 2000–2007. A look-ahead test (labels from data truncated at t equal labels from full data,
 with a positive control that uses month t+1) must pass first.
+
+**Step 12 results** (`results/s11_market_regimes.json`). Look-ahead: identical labels at 5 truncation dates;
+the positive control (returns through t+1) is caught at all 5. Market labels agree with real-time macro
+labels in 40% of months.
+
+| Difference (Sharpe) | 2007–2026 | 2000–2007 | JLGMX 2011–2026 |
+|---|---|---|---|
+| M1 − its static mix (timing) | +0.01, p = 0.90 | +0.13, p = 0.54 | −0.06, p = 0.41 |
+| M2 − 60% static mix (timing) | +0.03, p = 0.74 | +0.08, p = 0.71 | −0.02, p = 0.82 |
+| M1 − macro K | −0.24, p = 0.035, significant | +0.36, p = 0.14 | −0.22, p = 0.050, significant |
+| M1 − fund | +0.08, p = 0.40 | +0.40, p = 0.069, significant | −0.03, p = 0.73 |
+
+**Verdict by the rule fixed in advance: market-regime timing does not add value.** Removing the macro
+data's delay does not rescue regime timing. After 2007 the macro version is better, because real-time
+macro data labelled 2008 as Stagflation and prices did not soon enough (M1 drawdown −28.8% against
+−18.2%). Before 2007 M1 beats the fund, through its average allocation, not its timing.

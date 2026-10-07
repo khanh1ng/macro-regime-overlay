@@ -34,6 +34,7 @@ def main():
     lw = lambda per, k: RB["periods"][per]["ledoit_wolf"][k]["p"]
     pv = lambda x: f"{x:.3f}" if x < 0.05 else f"{x:.2f}"
     CR, H3 = RB["crisis_removed"], RB["h3_difference"]
+    MR = json.loads((RESULTS / "s11_market_regimes.json").read_text())
     mo = {per: RB["periods"][per]["months"] for per in RB["periods"]}
 
     rows = ["| Strategy | CAGR 2007–26 | Sharpe 2007–26 | Max DD 2007–26 | CAGR 2000–07 | Sharpe 2000–07 | Max DD 2000–07 |",
@@ -79,6 +80,7 @@ recur.
 | H7 | The hold-outs are independent confirmation | Effective number of independent timing series, (Σλ)²/Σλ² | {V['neff11']} for 11 equity assets of different styles and regions | **Not supported**: they move together |
 | H8 | A predictive regression on the same signals does better | Regression on the two real-time signals fitted on all earlier data; out-of-sample R², Clark–West | R² {V['m_r2_P1']} after 2007, {V['m_r2_P0']} before; Clark–West t {V['m_cw_P1']} and {V['m_cw_P0']} | **Rejected** |
 | H9 | The stock–bond correlation explains the sign change | Stagflation contrast split by the sign of the trailing 36-month fund–Treasury correlation | Difference t = {V['mech_diff_t']} | **Not supported** |
+| H10 | Regimes read from market prices, which have no publication delay, time the fund better | SPY − Treasuries and commodities − Treasuries over 6 months, same sign rule; spec fixed before the run; walk-forward variant | Timing over its own static mix {MR['periods']['P1']['tests']['M1 - S-M1']['sharpe_diff']:+.2f} (p = {pv(MR['periods']['P1']['tests']['M1 - S-M1']['ledoit_wolf']['p'])}) after 2007, {MR['periods']['P0']['tests']['M1 - S-M1']['sharpe_diff']:+.2f} (p = {pv(MR['periods']['P0']['tests']['M1 - S-M1']['ledoit_wolf']['p'])}) before; worse than macro K after 2007 ({neg(f"{MR['periods']['P1']['tests']['M1 - K']['sharpe_diff']:+.2f}")}, p = {pv(MR['periods']['P1']['tests']['M1 - K']['ledoit_wolf']['p'])}); labels agree with macro in {100 * MR['agreement_with_macro']['share']:.0f}% of months | **Not supported** |
 
 ## Results (after costs)
 

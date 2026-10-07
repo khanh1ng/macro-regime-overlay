@@ -638,6 +638,20 @@ after 2007, with an interval that includes zero, and @@m_ti_P0@@ before. The wei
 advance and not tuned. The negative result is therefore not specific to the hand-made table: the same real-time
 signals do not support timing when used in the standard way either.
 
+\subsection{Regimes from market prices}
+\label{sec:market}
+
+Macro data arrive late, so we also read regimes from prices, which are known at each month-end and never
+revised, under a specification fixed before the run: growth direction is the six-month return of SPY minus
+intermediate Treasuries, inflation direction that of commodities minus Treasuries, with the same sign rule.
+The labels pass a truncation test at @@mr_cuts@@ dates with a positive control, and agree with the real-time macro
+labels in only @@mr_agree@@ of months. Timing on these labels adds nothing over their own average weights:
+@@mr_P1_ti@@ ($p=$ @@mr_P1_ti_p@@) in 2007--2026 and @@mr_P0_ti@@ ($p=$ @@mr_P0_ti_p@@) in 2000--2007; a walk-forward
+allocation that learns each regime's fund return from past data does no better (@@mr_P1_ti2@@ and @@mr_P0_ti2@@).
+After 2007 the K table on market labels has a Sharpe ratio of @@mr_P1_m1@@ against @@mr_P1_k@@ on macro labels
+(difference @@mr_P1_mk@@, $p=$ @@mr_P1_mk_p@@), with a drawdown of @@mr_P1_dd_m1@@: prices did not label 2008 as
+Stagflation early enough. Removing the macro data's delay therefore does not rescue regime timing.
+
 \subsection{Where the timing gain comes from}
 \label{sec:where}
 
@@ -755,7 +769,8 @@ concentrated growth fund, tested under a frozen specification, improves risk-adj
 (partly in sample) and mainly through the 2008 crisis; its timing is negative, though not significantly, in
 2000--2007 for the fund and for ten other equity assets, while its
 average allocation reduces the drawdown in both periods and raises the Sharpe ratio over the whole sample. A standard predictive regression on the same signals has no out-of-sample skill, and the
-stock--bond correlation does not explain the change.
+stock--bond correlation does not explain the change. Regimes read from market prices, which have no publication
+delay, do no better.
 The defensible recommendation is static diversification, possibly with a simple trend rule; regime timing is a
 view on the current era, not a backtested improvement.
 

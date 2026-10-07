@@ -34,6 +34,7 @@ recur.
 | H7 | The hold-outs are independent confirmation | Effective number of independent timing series, (Σλ)²/Σλ² | 1.2 for 11 equity assets of different styles and regions | **Not supported**: they move together |
 | H8 | A predictive regression on the same signals does better | Regression on the two real-time signals fitted on all earlier data; out-of-sample R², Clark–West | R² −0.23% after 2007, −3.31% before; Clark–West t 0.80 and −0.53 | **Rejected** |
 | H9 | The stock–bond correlation explains the sign change | Stagflation contrast split by the sign of the trailing 36-month fund–Treasury correlation | Difference t = 0.86 | **Not supported** |
+| H10 | Regimes read from market prices, which have no publication delay, time the fund better | SPY − Treasuries and commodities − Treasuries over 6 months, same sign rule; spec fixed before the run; walk-forward variant | Timing over its own static mix +0.01 (p = 0.90) after 2007, +0.13 (p = 0.54) before; worse than macro K after 2007 (−0.24, p = 0.035); labels agree with macro in 40% of months | **Not supported** |
 
 ## Results (after costs)
 

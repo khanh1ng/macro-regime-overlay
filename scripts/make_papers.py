@@ -408,6 +408,22 @@ LABEL = {"ang2002": "Ang and Bekaert(2002)", "bailey2014": "Bailey and L\\'opez 
          "politis1994": "Politis and Romano(1994)", "welch2008": "Welch and Goyal(2008)"}
 
 
+# Step 12: regimes from market prices
+MR = json.loads((RESULTS / "s11_market_regimes.json").read_text())
+_t = lambda per, k: MR["periods"][per]["tests"][k]
+_pp = lambda x: f"${x:.3f}$" if x < 0.05 else f"${x:.2f}$"
+for per, tag in (("P1", "P1"), ("P0", "P0"), ("JLGMX", "J")):
+    V[f"mr_{tag}_m1"] = f"${MR['periods'][per]['metrics']['M1']['sharpe']:.2f}$"
+    V[f"mr_{tag}_k"] = f"${MR['periods'][per]['metrics']['K']['sharpe']:.2f}$"
+    for k, code in (("M1 - S-M1", "ti"), ("M2 - S-M2", "ti2"), ("M1 - K", "mk"), ("M1 - Fund", "mf")):
+        V[f"mr_{tag}_{code}"] = f"${_t(per, k)['sharpe_diff']:+.2f}$"
+        V[f"mr_{tag}_{code}_p"] = _pp(_t(per, k)["ledoit_wolf"]["p"])
+V["mr_P1_dd_m1"] = f"${MR['periods']['P1']['metrics']['M1']['maxdd_pct']:.1f}\\%$"
+V["mr_agree"] = f"${100 * MR['agreement_with_macro']['share']:.0f}\\%$"
+V["mr_cr_mk"] = f"${MR['crisis_removed']['tests']['M1 - K']['sharpe_diff']:+.2f}$"
+V["mr_cr_mk_p"] = _pp(MR["crisis_removed"]["tests"]["M1 - K"]["ledoit_wolf"]["p"])
+V["mr_cuts"] = str(len(MR["lookahead"]))
+
 # Step 11: robustness of the inference
 RB = json.loads((RESULTS / "s10_robustness.json").read_text())
 _p = lambda x: f"${x:.3f}$" if x < 0.01 else f"${x:.2f}$"

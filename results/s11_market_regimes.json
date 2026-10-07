@@ -1,0 +1,1054 @@
+{
+ "spec": "docs/RESEARCH_LOG.md, Step 12",
+ "lookahead": [
+  {
+   "cut": "2001-06",
+   "identical": true,
+   "control_caught": true
+  },
+  {
+   "cut": "2008-09",
+   "identical": true,
+   "control_caught": true
+  },
+  {
+   "cut": "2015-03",
+   "identical": true,
+   "control_caught": true
+  },
+  {
+   "cut": "2020-03",
+   "identical": true,
+   "control_caught": true
+  },
+  {
+   "cut": "2022-06",
+   "identical": true,
+   "control_caught": true
+  }
+ ],
+ "first_label": "1993-07",
+ "m2_first": "1998-07",
+ "agreement_with_macro": {
+  "months": 398,
+  "share": 0.399,
+  "regime_shares": {
+   "Reflation": 0.449,
+   "Goldilocks": 0.271,
+   "Disinflation": 0.185,
+   "Stagflation": 0.095
+  }
+ },
+ "periods": {
+  "P1": {
+   "months": 234,
+   "metrics": {
+    "M1": {
+     "months": 234,
+     "cagr_pct": 12.54,
+     "vol_pct": 13.62,
+     "sharpe": 0.829,
+     "maxdd_pct": -28.79,
+     "worst12_pct": -28.58,
+     "end_value_per_1": 10.0178
+    },
+    "S-M1": {
+     "months": 234,
+     "cagr_pct": 12.23,
+     "vol_pct": 13.41,
+     "sharpe": 0.82,
+     "maxdd_pct": -35.27,
+     "worst12_pct": -30.36,
+     "end_value_per_1": 9.494
+    },
+    "Fund": {
+     "months": 234,
+     "cagr_pct": 14.08,
+     "vol_pct": 17.66,
+     "sharpe": 0.753,
+     "maxdd_pct": -47.56,
+     "worst12_pct": -39.84,
+     "end_value_per_1": 13.0537
+    },
+    "Trend": {
+     "months": 234,
+     "cagr_pct": 11.45,
+     "vol_pct": 13.65,
+     "sharpe": 0.755,
+     "maxdd_pct": -19.74,
+     "worst12_pct": -18.44,
+     "end_value_per_1": 8.2867
+    },
+    "K": {
+     "months": 234,
+     "cagr_pct": 14.33,
+     "vol_pct": 11.86,
+     "sharpe": 1.069,
+     "maxdd_pct": -18.17,
+     "worst12_pct": -17.6,
+     "end_value_per_1": 13.628
+    },
+    "M2": {
+     "months": 234,
+     "cagr_pct": 12.97,
+     "vol_pct": 13.4,
+     "sharpe": 0.87,
+     "maxdd_pct": -25.66,
+     "worst12_pct": -25.12,
+     "end_value_per_1": 10.7834
+    },
+    "S-M2": {
+     "months": 234,
+     "cagr_pct": 11.3,
+     "vol_pct": 11.76,
+     "sharpe": 0.845,
+     "maxdd_pct": -30.57,
+     "worst12_pct": -26.21,
+     "end_value_per_1": 8.0608
+    }
+   },
+   "tests": {
+    "M1 - S-M1": {
+     "sharpe_diff": 0.009,
+     "ci90": {
+      "6": [
+       -0.114,
+       0.123
+      ],
+      "12": [
+       -0.107,
+       0.116
+      ],
+      "24": [
+       -0.113,
+       0.111
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.009,
+      "se_ann": 0.071,
+      "p": 0.8985
+     },
+     "maxdd_diff_pp": 6.47,
+     "significant": false
+    },
+    "M1 - Fund": {
+     "sharpe_diff": 0.077,
+     "ci90": {
+      "6": [
+       -0.083,
+       0.231
+      ],
+      "12": [
+       -0.087,
+       0.235
+      ],
+      "24": [
+       -0.107,
+       0.243
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.077,
+      "se_ann": 0.092,
+      "p": 0.402
+     },
+     "maxdd_diff_pp": 18.76,
+     "significant": false
+    },
+    "M1 - K": {
+     "sharpe_diff": -0.239,
+     "ci90": {
+      "6": [
+       -0.424,
+       -0.051
+      ],
+      "12": [
+       -0.414,
+       -0.057
+      ],
+      "24": [
+       -0.394,
+       -0.073
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.24,
+      "se_ann": 0.114,
+      "p": 0.035
+     },
+     "maxdd_diff_pp": -10.63,
+     "significant": true
+    },
+    "M1 - Trend": {
+     "sharpe_diff": 0.074,
+     "ci90": {
+      "6": [
+       -0.236,
+       0.374
+      ],
+      "12": [
+       -0.201,
+       0.348
+      ],
+      "24": [
+       -0.147,
+       0.306
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.074,
+      "se_ann": 0.198,
+      "p": 0.7088
+     },
+     "maxdd_diff_pp": -9.05,
+     "significant": false
+    },
+    "M2 - S-M2": {
+     "sharpe_diff": 0.025,
+     "ci90": {
+      "6": [
+       -0.101,
+       0.149
+      ],
+      "12": [
+       -0.093,
+       0.145
+      ],
+      "24": [
+       -0.092,
+       0.136
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.025,
+      "se_ann": 0.074,
+      "p": 0.7404
+     },
+     "maxdd_diff_pp": 4.91,
+     "significant": false
+    },
+    "M2 - Fund": {
+     "sharpe_diff": 0.117,
+     "ci90": {
+      "6": [
+       -0.034,
+       0.276
+      ],
+      "12": [
+       -0.035,
+       0.282
+      ],
+      "24": [
+       -0.053,
+       0.29
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.118,
+      "se_ann": 0.09,
+      "p": 0.1922
+     },
+     "maxdd_diff_pp": 21.9,
+     "significant": false
+    }
+   },
+   "switches_per_year_M1": 3.3
+  },
+  "P0": {
+   "months": 78,
+   "metrics": {
+    "M1": {
+     "months": 78,
+     "cagr_pct": 2.24,
+     "vol_pct": 11.36,
+     "sharpe": 0.008,
+     "maxdd_pct": -28.16,
+     "worst12_pct": -27.1,
+     "end_value_per_1": 1.1548
+    },
+    "S-M1": {
+     "months": 78,
+     "cagr_pct": 0.99,
+     "vol_pct": 10.17,
+     "sharpe": -0.123,
+     "maxdd_pct": -34.88,
+     "worst12_pct": -26.37,
+     "end_value_per_1": 1.0662
+    },
+    "Fund": {
+     "months": 78,
+     "cagr_pct": -5.18,
+     "vol_pct": 16.73,
+     "sharpe": -0.396,
+     "maxdd_pct": -56.78,
+     "worst12_pct": -43.5,
+     "end_value_per_1": 0.7078
+    },
+    "Trend": {
+     "months": 78,
+     "cagr_pct": 7.38,
+     "vol_pct": 6.23,
+     "sharpe": 0.731,
+     "maxdd_pct": -7.36,
+     "worst12_pct": -6.0,
+     "end_value_per_1": 1.5889
+    },
+    "K": {
+     "months": 78,
+     "cagr_pct": -2.18,
+     "vol_pct": 11.86,
+     "sharpe": -0.355,
+     "maxdd_pct": -47.55,
+     "worst12_pct": -36.48,
+     "end_value_per_1": 0.8665
+    },
+    "M2": {
+     "months": 78,
+     "cagr_pct": 1.07,
+     "vol_pct": 12.05,
+     "sharpe": -0.08,
+     "maxdd_pct": -36.27,
+     "worst12_pct": -31.13,
+     "end_value_per_1": 1.0718
+    },
+    "S-M2": {
+     "months": 78,
+     "cagr_pct": 0.58,
+     "vol_pct": 10.3,
+     "sharpe": -0.16,
+     "maxdd_pct": -35.72,
+     "worst12_pct": -26.83,
+     "end_value_per_1": 1.038
+    }
+   },
+   "tests": {
+    "M1 - S-M1": {
+     "sharpe_diff": 0.132,
+     "ci90": {
+      "6": [
+       -0.217,
+       0.478
+      ],
+      "12": [
+       -0.244,
+       0.456
+      ],
+      "24": [
+       -0.172,
+       0.423
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.132,
+      "se_ann": 0.217,
+      "p": 0.5414
+     },
+     "maxdd_diff_pp": 6.71,
+     "significant": false
+    },
+    "M1 - Fund": {
+     "sharpe_diff": 0.404,
+     "ci90": {
+      "6": [
+       0.091,
+       0.801
+      ],
+      "12": [
+       0.094,
+       0.763
+      ],
+      "24": [
+       0.145,
+       0.717
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.407,
+      "se_ann": 0.224,
+      "p": 0.069
+     },
+     "maxdd_diff_pp": 28.62,
+     "significant": true
+    },
+    "M1 - K": {
+     "sharpe_diff": 0.364,
+     "ci90": {
+      "6": [
+       -0.09,
+       0.774
+      ],
+      "12": [
+       -0.177,
+       0.742
+      ],
+      "24": [
+       -0.11,
+       0.715
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.366,
+      "se_ann": 0.247,
+      "p": 0.1383
+     },
+     "maxdd_diff_pp": 19.39,
+     "significant": false
+    },
+    "M1 - Trend": {
+     "sharpe_diff": -0.723,
+     "ci90": {
+      "6": [
+       -1.593,
+       0.176
+      ],
+      "12": [
+       -1.637,
+       0.294
+      ],
+      "24": [
+       -1.621,
+       0.302
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.727,
+      "se_ann": 0.478,
+      "p": 0.1281
+     },
+     "maxdd_diff_pp": -20.8,
+     "significant": false
+    },
+    "M2 - S-M2": {
+     "sharpe_diff": 0.081,
+     "ci90": {
+      "6": [
+       -0.228,
+       0.479
+      ],
+      "12": [
+       -0.205,
+       0.465
+      ],
+      "24": [
+       -0.147,
+       0.42
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.081,
+      "se_ann": 0.215,
+      "p": 0.7062
+     },
+     "maxdd_diff_pp": -0.55,
+     "significant": false
+    },
+    "M2 - Fund": {
+     "sharpe_diff": 0.316,
+     "ci90": {
+      "6": [
+       0.009,
+       0.791
+      ],
+      "12": [
+       0.038,
+       0.782
+      ],
+      "24": [
+       0.092,
+       0.744
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.318,
+      "se_ann": 0.226,
+      "p": 0.1582
+     },
+     "maxdd_diff_pp": 20.51,
+     "significant": false
+    }
+   },
+   "switches_per_year_M1": 3.2
+  },
+  "Pall": {
+   "months": 312,
+   "metrics": {
+    "M1": {
+     "months": 312,
+     "cagr_pct": 9.87,
+     "vol_pct": 13.14,
+     "sharpe": 0.645,
+     "maxdd_pct": -28.79,
+     "worst12_pct": -28.58,
+     "end_value_per_1": 11.5685
+    },
+    "S-M1": {
+     "months": 312,
+     "cagr_pct": 8.97,
+     "vol_pct": 12.65,
+     "sharpe": 0.599,
+     "maxdd_pct": -39.23,
+     "worst12_pct": -29.8,
+     "end_value_per_1": 9.3258
+    },
+    "Fund": {
+     "months": 312,
+     "cagr_pct": 8.93,
+     "vol_pct": 17.57,
+     "sharpe": 0.472,
+     "maxdd_pct": -56.78,
+     "worst12_pct": -43.5,
+     "end_value_per_1": 9.24
+    },
+    "Trend": {
+     "months": 312,
+     "cagr_pct": 10.42,
+     "vol_pct": 12.23,
+     "sharpe": 0.725,
+     "maxdd_pct": -19.74,
+     "worst12_pct": -18.44,
+     "end_value_per_1": 13.1664
+    },
+    "K": {
+     "months": 312,
+     "cagr_pct": 9.96,
+     "vol_pct": 12.0,
+     "sharpe": 0.7,
+     "maxdd_pct": -47.55,
+     "worst12_pct": -36.48,
+     "end_value_per_1": 11.8096
+    },
+    "M2": {
+     "months": 312,
+     "cagr_pct": 9.87,
+     "vol_pct": 13.13,
+     "sharpe": 0.645,
+     "maxdd_pct": -36.27,
+     "worst12_pct": -31.13,
+     "end_value_per_1": 11.558
+    },
+    "S-M2": {
+     "months": 312,
+     "cagr_pct": 8.51,
+     "vol_pct": 11.47,
+     "sharpe": 0.612,
+     "maxdd_pct": -35.72,
+     "worst12_pct": -26.83,
+     "end_value_per_1": 8.3678
+    }
+   },
+   "tests": {
+    "M1 - S-M1": {
+     "sharpe_diff": 0.046,
+     "ci90": {
+      "6": [
+       -0.079,
+       0.171
+      ],
+      "12": [
+       -0.075,
+       0.161
+      ],
+      "24": [
+       -0.074,
+       0.156
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.046,
+      "se_ann": 0.078,
+      "p": 0.553
+     },
+     "maxdd_diff_pp": 10.44,
+     "significant": false
+    },
+    "M1 - Fund": {
+     "sharpe_diff": 0.173,
+     "ci90": {
+      "6": [
+       0.017,
+       0.33
+      ],
+      "12": [
+       0.011,
+       0.329
+      ],
+      "24": [
+       -0.01,
+       0.34
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.173,
+      "se_ann": 0.093,
+      "p": 0.0635
+     },
+     "maxdd_diff_pp": 27.99,
+     "significant": false
+    },
+    "M1 - K": {
+     "sharpe_diff": -0.055,
+     "ci90": {
+      "6": [
+       -0.265,
+       0.148
+      ],
+      "12": [
+       -0.276,
+       0.166
+      ],
+      "24": [
+       -0.285,
+       0.166
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.055,
+      "se_ann": 0.129,
+      "p": 0.6689
+     },
+     "maxdd_diff_pp": 18.76,
+     "significant": false
+    },
+    "M1 - Trend": {
+     "sharpe_diff": -0.08,
+     "ci90": {
+      "6": [
+       -0.385,
+       0.225
+      ],
+      "12": [
+       -0.378,
+       0.218
+      ],
+      "24": [
+       -0.346,
+       0.175
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.08,
+      "se_ann": 0.191,
+      "p": 0.6744
+     },
+     "maxdd_diff_pp": -9.05,
+     "significant": false
+    },
+    "M2 - S-M2": {
+     "sharpe_diff": 0.034,
+     "ci90": {
+      "6": [
+       -0.093,
+       0.174
+      ],
+      "12": [
+       -0.079,
+       0.157
+      ],
+      "24": [
+       -0.067,
+       0.139
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.034,
+      "se_ann": 0.082,
+      "p": 0.6797
+     },
+     "maxdd_diff_pp": -0.55,
+     "significant": false
+    },
+    "M2 - Fund": {
+     "sharpe_diff": 0.173,
+     "ci90": {
+      "6": [
+       0.026,
+       0.338
+      ],
+      "12": [
+       0.03,
+       0.329
+      ],
+      "24": [
+       0.021,
+       0.325
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.174,
+      "se_ann": 0.093,
+      "p": 0.0623
+     },
+     "maxdd_diff_pp": 20.51,
+     "significant": true
+    }
+   },
+   "switches_per_year_M1": 3.3
+  },
+  "JLGMX": {
+   "months": 189,
+   "metrics": {
+    "M1": {
+     "months": 189,
+     "cagr_pct": 12.72,
+     "vol_pct": 13.04,
+     "sharpe": 0.868,
+     "maxdd_pct": -20.82,
+     "worst12_pct": -20.82,
+     "end_value_per_1": 6.5938
+    },
+    "S-M1": {
+     "months": 189,
+     "cagr_pct": 13.43,
+     "vol_pct": 12.92,
+     "sharpe": 0.924,
+     "maxdd_pct": -22.39,
+     "worst12_pct": -18.72,
+     "end_value_per_1": 7.2722
+    },
+    "Fund": {
+     "months": 189,
+     "cagr_pct": 16.26,
+     "vol_pct": 16.62,
+     "sharpe": 0.9,
+     "maxdd_pct": -27.81,
+     "worst12_pct": -25.2,
+     "end_value_per_1": 10.7297
+    },
+    "Trend": {
+     "months": 189,
+     "cagr_pct": 11.71,
+     "vol_pct": 13.64,
+     "sharpe": 0.768,
+     "maxdd_pct": -19.74,
+     "worst12_pct": -18.44,
+     "end_value_per_1": 5.7173
+    },
+    "K": {
+     "months": 189,
+     "cagr_pct": 14.16,
+     "vol_pct": 11.47,
+     "sharpe": 1.084,
+     "maxdd_pct": -17.6,
+     "worst12_pct": -17.6,
+     "end_value_per_1": 8.0485
+    },
+    "M2": {
+     "months": 189,
+     "cagr_pct": 13.78,
+     "vol_pct": 13.25,
+     "sharpe": 0.928,
+     "maxdd_pct": -22.83,
+     "worst12_pct": -22.51,
+     "end_value_per_1": 7.6384
+    },
+    "S-M2": {
+     "months": 189,
+     "cagr_pct": 11.97,
+     "vol_pct": 11.04,
+     "sharpe": 0.944,
+     "maxdd_pct": -19.2,
+     "worst12_pct": -15.89,
+     "end_value_per_1": 5.9379
+    }
+   },
+   "tests": {
+    "M1 - S-M1": {
+     "sharpe_diff": -0.056,
+     "ci90": {
+      "6": [
+       -0.167,
+       0.05
+      ],
+      "12": [
+       -0.155,
+       0.04
+      ],
+      "24": [
+       -0.15,
+       0.03
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.056,
+      "se_ann": 0.067,
+      "p": 0.4061
+     },
+     "maxdd_diff_pp": 1.57,
+     "significant": false
+    },
+    "M1 - Fund": {
+     "sharpe_diff": -0.032,
+     "ci90": {
+      "6": [
+       -0.187,
+       0.126
+      ],
+      "12": [
+       -0.181,
+       0.131
+      ],
+      "24": [
+       -0.182,
+       0.122
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.032,
+      "se_ann": 0.093,
+      "p": 0.7282
+     },
+     "maxdd_diff_pp": 6.99,
+     "significant": false
+    },
+    "M1 - K": {
+     "sharpe_diff": -0.216,
+     "ci90": {
+      "6": [
+       -0.405,
+       -0.027
+      ],
+      "12": [
+       -0.406,
+       -0.025
+      ],
+      "24": [
+       -0.391,
+       -0.043
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.216,
+      "se_ann": 0.111,
+      "p": 0.0504
+     },
+     "maxdd_diff_pp": -3.22,
+     "significant": true
+    },
+    "M1 - Trend": {
+     "sharpe_diff": 0.1,
+     "ci90": {
+      "6": [
+       -0.13,
+       0.339
+      ],
+      "12": [
+       -0.116,
+       0.342
+      ],
+      "24": [
+       -0.107,
+       0.325
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.1,
+      "se_ann": 0.141,
+      "p": 0.4754
+     },
+     "maxdd_diff_pp": -1.08,
+     "significant": false
+    },
+    "M2 - S-M2": {
+     "sharpe_diff": -0.016,
+     "ci90": {
+      "6": [
+       -0.133,
+       0.106
+      ],
+      "12": [
+       -0.12,
+       0.101
+      ],
+      "24": [
+       -0.112,
+       0.09
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": -0.016,
+      "se_ann": 0.071,
+      "p": 0.8201
+     },
+     "maxdd_diff_pp": -3.64,
+     "significant": false
+    },
+    "M2 - Fund": {
+     "sharpe_diff": 0.027,
+     "ci90": {
+      "6": [
+       -0.106,
+       0.18
+      ],
+      "12": [
+       -0.1,
+       0.192
+      ],
+      "24": [
+       -0.1,
+       0.19
+      ]
+     },
+     "ledoit_wolf": {
+      "diff_ann": 0.027,
+      "se_ann": 0.082,
+      "p": 0.7394
+     },
+     "maxdd_diff_pp": 4.98,
+     "significant": false
+    }
+   },
+   "switches_per_year_M1": 3.5
+  }
+ },
+ "crisis_removed": {
+  "months": 216,
+  "tests": {
+   "M1 - S-M1": {
+    "sharpe_diff": -0.065,
+    "ci90": {
+     "6": [
+      -0.167,
+      0.031
+     ],
+     "12": [
+      -0.157,
+      0.019
+     ],
+     "24": [
+      -0.149,
+      0.01
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": -0.065,
+     "se_ann": 0.061,
+     "p": 0.2839
+    },
+    "maxdd_diff_pp": 0.84,
+    "significant": false
+   },
+   "M1 - Fund": {
+    "sharpe_diff": -0.008,
+    "ci90": {
+     "6": [
+      -0.157,
+      0.135
+     ],
+     "12": [
+      -0.149,
+      0.139
+     ],
+     "24": [
+      -0.15,
+      0.132
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": -0.008,
+     "se_ann": 0.086,
+     "p": 0.9254
+    },
+    "maxdd_diff_pp": 6.99,
+    "significant": false
+   },
+   "M1 - K": {
+    "sharpe_diff": -0.197,
+    "ci90": {
+     "6": [
+      -0.363,
+      -0.028
+     ],
+     "12": [
+      -0.37,
+      -0.033
+     ],
+     "24": [
+      -0.366,
+      -0.039
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": -0.198,
+     "se_ann": 0.102,
+     "p": 0.0525
+    },
+    "maxdd_diff_pp": -3.22,
+    "significant": true
+   },
+   "M1 - Trend": {
+    "sharpe_diff": 0.178,
+    "ci90": {
+     "6": [
+      -0.043,
+      0.412
+     ],
+     "12": [
+      -0.04,
+      0.421
+     ],
+     "24": [
+      -0.048,
+      0.427
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": 0.179,
+     "se_ann": 0.139,
+     "p": 0.1976
+    },
+    "maxdd_diff_pp": -1.08,
+    "significant": false
+   },
+   "M2 - S-M2": {
+    "sharpe_diff": -0.05,
+    "ci90": {
+     "6": [
+      -0.158,
+      0.064
+     ],
+     "12": [
+      -0.148,
+      0.058
+     ],
+     "24": [
+      -0.139,
+      0.054
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": -0.05,
+     "se_ann": 0.067,
+     "p": 0.4509
+    },
+    "maxdd_diff_pp": -3.64,
+    "significant": false
+   },
+   "M2 - Fund": {
+    "sharpe_diff": 0.026,
+    "ci90": {
+     "6": [
+      -0.098,
+      0.17
+     ],
+     "12": [
+      -0.093,
+      0.179
+     ],
+     "24": [
+      -0.093,
+      0.173
+     ]
+    },
+    "ledoit_wolf": {
+     "diff_ann": 0.026,
+     "se_ann": 0.076,
+     "p": 0.7347
+    },
+    "maxdd_diff_pp": 4.98,
+    "significant": false
+   }
+  }
+ },
+ "market_timing_adds_value": false
+}
