@@ -30,9 +30,10 @@ regimes agree in only @@agree_rev1@@ of months, and the usual backtest construct
 knowable in @@agree_rev2@@. Second, real-time regimes do not forecast next month's excess return of any of
 @@n_assets@@ asset classes once @@n_tests@@ tests are accounted for, and for the growth fund the effect of
 Stagflation reverses sign around 2007 (@@pre_con@@ a year relative to other regimes before, @@post_con@@ after).
-Third, a regime overlay improves the fund's Sharpe ratio from @@P1_f_sh@@ to @@P1_k_sh@@ in 2007--2026, and
-its timing component is significant there (@@P1_ti_sh@@, 90\% interval @@P1_ti_ci@@); but in 2000--2007 the
-same timing lowers the Sharpe ratio by @@P0_ti_sh@@ and deepens the drawdown, for the fund and for ten other equity funds and indices of different styles and
+Third, a regime overlay improves the fund's Sharpe ratio from @@P1_f_sh@@ to @@P1_k_sh@@ in 2007--2026
+(Ledoit--Wolf $p=$ @@lw_P1_kf@@), with a timing component of @@P1_ti_sh@@ ($p=$ @@lw_P1_ti@@); both gains rest on the
+2008 crisis and are not significant without it. In 2000--2007 the same timing lowers the Sharpe ratio by
+@@P0_ti_sh@@ (not significant), for the fund and for ten other equity funds and indices of different styles and
 regions; these, however, behave like little more than one independent series. A standard predictive
 regression on the same real-time signals has no out-of-sample skill and adds no value either, and the
 stock--bond correlation does not explain the change. Holding the overlay's average weights without timing
@@ -88,7 +89,7 @@ Question & Answer \\
 Do revisions change the regimes? & Real-time and revised regimes agree in @@agree_rev1@@ of months \\
 Do real-time regimes forecast next month's returns? & @@nbonf_all@@ of @@n_tests@@ tests pass a Bonferroni correction \\
 Is the growth fund's Stagflation effect stable? & @@pre_con@@ a year before 2007, @@post_con@@ after \\
-Does the overlay's \emph{timing} add value, 2007--2026? & Sharpe @@P1_ti_sh@@, 90\% interval @@P1_ti_ci@@ \\
+Does the overlay's \emph{timing} add value, 2007--2026? & Sharpe @@P1_ti_sh@@, 90\% interval @@P1_ti_ci@@; @@cr_ti@@ without 2007-10 to 2009-03 \\
 \quad and in 2000--2007? & Sharpe @@P0_ti_sh@@, 90\% interval @@P0_ti_ci@@ \\
 Does its \emph{average allocation} add value? & Sharpe @@P1_st_sh@@ @@P1_st_ci@@ (2007--2026), @@P0_st_sh@@ @@P0_st_ci@@ (2000--2007) \\
 Same pattern for ten other equity assets? & Yes for all ten, but they behave like @@neff11@@ independent series \\
@@ -335,7 +336,9 @@ Regime & $n$ & Excess & SR & $n$ & Excess & SR & $n$ & Excess & SR \\
 after Stagflation months, and the contrast with other regimes is @@f_con@@ ($t=$ @@f_cont@@). The two halves of
 the sample disagree (Table~\ref{tab:fund}, Figure~\ref{fig:fund}). Before 2007, Stagflation was the fund's
 \emph{best} regime (@@pre_stag@@, contrast @@pre_con@@); after 2007 it was close to its worst (@@post_stag@@,
-contrast @@post_con@@, $t=$ @@post_cont@@, Wald $p=$ @@post_p@@). After 2007 the regime means also differ
+contrast @@post_con@@, $t=$ @@post_cont@@, Wald $p=$ @@post_p@@). The pre-2007 contrast alone is not significant
+($t=$ @@pre_cont@@), but the change between the periods is: @@h3_diff@@ points a year, $z=$ @@h3_z@@, $p=$ @@h3_p@@
+(the periods do not overlap; the split is the start of the joint ETF sample, fixed before any regime result). After 2007 the regime means also differ
 significantly for @@post_sig@@; before 2007 none of the @@n_pre_assets@@ assets with enough history shows a
 significant difference. Even after 2007 the result depends on the classifier: with the persistent version the
 fund's Wald $p$ is @@sp_post_p@@.
@@ -521,7 +524,8 @@ well; timing gives some of it back (@@P1_ti_ret@@). The revised-data classifier 
 \begin{table}[htbp]
 \centering
 \caption{Differences in Sharpe ratio and maximum drawdown (pp, positive = first strategy shallower), with 90\%
-stationary-bootstrap intervals; P$\le$0: share of draws with a Sharpe difference at or below zero.}
+stationary-bootstrap intervals; P$\le$0: share of draws with a Sharpe difference at or below zero. Drawdown
+intervals are descriptive: drawdown depends on path order and each period contains one crash.}
 \label{tab:boot}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -535,11 +539,23 @@ Period & Difference & Sharpe & 90\% interval & P$\le$0 & Max DD & 90\% interval 
 \end{table}
 
 \paragraph{Is the timing effect real? (Table~\ref{tab:boot}).} In 2007--2026 the timing difference has a 90\%
-interval of @@P1_ti_ci@@, above zero. In 2000--2007 it is @@P0_ti_sh@@ with an interval of @@P0_ti_ci@@, and the
-drawdown difference @@P0_ti_ddci@@ lies entirely below zero: timing made the worst loss deeper. Over 2000--2026
+interval of @@P1_ti_ci@@, above zero. In 2000--2007 it is @@P0_ti_sh@@ with an interval of @@P0_ti_ci@@, which includes zero; the drawdown is
+@@P0_ti_dd@@ points deeper, a point estimate only (drawdown depends on path order and each period contains one
+crash, so we do not test it). Over 2000--2026
 the interval is @@Pall_ti_ci@@ and includes zero. The static part has intervals of @@P1_st_ci@@ (2007--2026) and
 @@P0_st_ci@@ (2000--2007): it is the more reliable part of the overlay. Against the trend rule, K is better in
 2007--2026 (@@P1_tr_ci@@) and worse in 2000--2007 (@@P0_tr_ci@@).
+
+\paragraph{Robustness of the inference.} Two checks were fixed before they were run. First, the Ledoit--Wolf
+test of a Sharpe difference with a Newey--West covariance gives the same picture as the bootstrap, and the
+bootstrap intervals barely move with mean blocks of @@rb_blocks@@ months. K beats the fund after 2007 ($p=$
+@@lw_P1_kf@@) and over 2000--2026 ($p=$ @@lw_Pall_kf@@) but not before 2007 ($p=$ @@lw_P0_kf@@); the static part is
+significant before 2007 ($p=$ @@lw_P0_st@@) and overall ($p=$ @@lw_Pall_st@@) but not after ($p=$ @@lw_P1_st@@);
+timing meets the rule fixed in advance (bootstrap intervals excluding zero at every block length and $p<0.10$)
+only after 2007 ($p=$ @@lw_P1_ti@@); before 2007 its negative estimate has $p=$ @@lw_P0_ti@@ but bootstrap intervals
+that include zero, so it fails the rule. Second, removing October 2007 to March 2009 from the later period leaves K's advantage at
+@@cr_kf@@ (@@cr_kf_ci@@, $p=$ @@cr_kf_p@@) and timing at @@cr_ti@@ (@@cr_ti_ci@@, $p=$ @@cr_ti_p@@): neither is
+significant. The later period's gains rest on one crisis.
 
 \paragraph{The deflated Sharpe ratio does not answer this.} Counting the @@old_trials@@ configurations of the
 earlier backtest and the @@dsr_here@@ run here, K's deflated Sharpe ratio \citep{bailey2014} is @@dsr_k@@, but the
@@ -581,8 +597,8 @@ same for every fund'' is close to one observation repeated. What the hold-outs d
 not a feature of growth stocks alone; what they cannot do is add independent episodes. Together with the sign
 change of Section~\ref{sec:predict}, the evidence points to a relation that changed, not to a rule that works.
 
-\paragraph{The criterion fails.} Timing is significant in one period and of the opposite sign in the other, for
-every fund. By the rule fixed before the backtest, regime timing does not add value.
+\paragraph{The criterion fails.} Timing is positive in one period, significantly only at the 10\% level and only
+with 2008, and negative, though not significantly, in the other, with the same signs for every fund. By the rule fixed before the backtest, regime timing does not add value.
 
 \subsection{A standard alternative: continuous signals}
 \label{sec:model}
@@ -736,7 +752,8 @@ A growth--inflation classifier run on the data available at the time differs fro
 third of months and does not forecast next month's returns of any of twelve asset classes after accounting for
 multiple tests. For growth equities the effect of Stagflation reverses sign around 2007. A regime overlay for a
 concentrated growth fund, tested under a frozen specification, improves risk-adjusted returns in 2007--2026
-(partly in sample), but its timing hurts in 2000--2007 for the fund and for ten other equity assets, while its
+(partly in sample) and mainly through the 2008 crisis; its timing is negative, though not significantly, in
+2000--2007 for the fund and for ten other equity assets, while its
 average allocation reduces the drawdown in both periods and raises the Sharpe ratio over the whole sample. A standard predictive regression on the same signals has no out-of-sample skill, and the
 stock--bond correlation does not explain the change.
 The defensible recommendation is static diversification, possibly with a simple trend rule; regime timing is a

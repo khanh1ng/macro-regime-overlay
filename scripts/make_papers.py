@@ -408,6 +408,22 @@ LABEL = {"ang2002": "Ang and Bekaert(2002)", "bailey2014": "Bailey and L\\'opez 
          "politis1994": "Politis and Romano(1994)", "welch2008": "Welch and Goyal(2008)"}
 
 
+# Step 11: robustness of the inference
+RB = json.loads((RESULTS / "s10_robustness.json").read_text())
+_p = lambda x: f"${x:.3f}$" if x < 0.01 else f"${x:.2f}$"
+for per, tag in (("P1", "P1"), ("P0", "P0"), ("Pall", "Pall")):
+    lw = RB["periods"][per]["ledoit_wolf"]
+    V[f"lw_{tag}_kf"], V[f"lw_{tag}_st"], V[f"lw_{tag}_ti"] = (_p(lw[k]["p"]) for k in ("K - Fund", "S-K - Fund", "K - S-K"))
+CR = RB["crisis_removed"]
+V["cr_kf"] = f"${CR['K - Fund']['sharpe_diff']:+.2f}$"; V["cr_kf_p"] = _p(CR["K - Fund"]["ledoit_wolf"]["p"])
+V["cr_kf_ci"] = "$[{:+.2f},\\ {:+.2f}]$".format(*CR["K - Fund"]["ci90"])
+V["cr_ti"] = f"${CR['K - S-K']['sharpe_diff']:+.2f}$"; V["cr_ti_p"] = _p(CR["K - S-K"]["ledoit_wolf"]["p"])
+V["cr_ti_ci"] = "$[{:+.2f},\\ {:+.2f}]$".format(*CR["K - S-K"]["ci90"])
+H3 = RB["h3_difference"]
+V["h3_diff"], V["h3_z"], V["h3_p"] = f"${H3['diff']:.1f}$", f"${H3['z']:.2f}$", _p(H3["p"])
+V["rb_blocks"] = "6, 12 and 24"
+
+
 def fill(template, outname):
     t = (P / template).read_text()
     missing = sorted(set(re.findall(r"@@(\w+)@@", t)) - set(V))

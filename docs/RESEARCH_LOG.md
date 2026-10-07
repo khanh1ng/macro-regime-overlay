@@ -557,3 +557,21 @@ period is dominated by one crash; (4) the 2007–2026 result may rest on 2008; (
 **How verdicts change, fixed now.** A Sharpe difference is called significant only if the 90% bootstrap
 interval excludes zero for all three block lengths **and** the Ledoit–Wolf two-sided p < 0.10.
 Drawdown differences are reported as point estimates and no longer described as significant.
+
+**Step 11 results** (`results/s10_robustness.json`).
+
+| Difference | 2007–2026 | 2000–2007 | 2000–2026 | 2007–2026 without 2007-10 to 2009-03 |
+|---|---|---|---|---|
+| K − fund | +0.32, LW p = 0.03, significant | +0.04, p = 0.79 | +0.23, p = 0.04, significant | +0.19, p = 0.14 |
+| S-K − fund | +0.09, p = 0.13 | +0.22, p = 0.007, significant | +0.14, p = 0.005, significant | +0.07, p = 0.26 |
+| K − S-K | +0.22, p = 0.07, significant at 10% | −0.18, p = 0.09, bootstrap interval includes zero: fails the rule | +0.09, p = 0.38 | +0.12, p = 0.21 |
+
+Bootstrap intervals barely move between mean blocks of 6, 12 and 24 months. H3: the change in the fund's
+Stagflation contrast is 34.9 points a year, z = 2.50, p = 0.013.
+
+**What changes.** (1) The 2007–2026 gains of the overlay and of its timing rest on the 2008 crisis; without it
+neither is significant. The paper and README now say so. (2) "Timing hurt before 2007" overstated the
+evidence: the estimate is negative but fails the pre-set rule; it is now "negative, not significant".
+(3) Drawdown differences are reported as point estimates. (4) H3 is now supported by a test of the difference,
+not by the two signs. (5) The README described the 36 predictability tests wrongly as regime contrasts; they
+are Wald tests, 12 assets × 3 classifiers.

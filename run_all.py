@@ -16,6 +16,7 @@ STEPS = [
     "scripts/s7_holdouts.py",
     "scripts/s8_model.py",
     "scripts/s9_mechanism.py",
+    "scripts/s10_robustness.py",
     "tests/test_regression.py",
     "scripts/make_papers.py",
     "scripts/report_readme.py",
