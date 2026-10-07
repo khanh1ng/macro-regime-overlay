@@ -18,6 +18,7 @@ STEPS = [
     "scripts/s9_mechanism.py",
     "tests/test_regression.py",
     "scripts/make_papers.py",
+    "scripts/report_readme.py",
 ]
 
 for s in STEPS:

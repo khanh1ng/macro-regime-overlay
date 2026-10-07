@@ -425,5 +425,7 @@ def fill(template, outname):
 
 
 if __name__ == "__main__":
+    json.dump({k: v for k, v in V.items() if len(str(v)) < 200}, open(ROOT / "results" / "paper_values.json", "w"),
+              indent=0, sort_keys=True)
     c = fill("template.tex", "paper.tex")
     print(f"paper.tex ({c} references)")
