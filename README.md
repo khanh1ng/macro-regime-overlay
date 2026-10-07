@@ -35,7 +35,7 @@ bet that the post-2007 relation continues.
 
 ## Results (after costs)
 
-| Strategy | 2007–2026 CAGR | Sharpe | Max drawdown | 2000–2007 CAGR | Sharpe | Max drawdown |
+| Strategy | CAGR 2007–26 | Sharpe 2007–26 | Max DD 2007–26 | CAGR 2000–07 | Sharpe 2000–07 | Max DD 2000–07 |
 |---|---:|---:|---:|---:|---:|---:|
 | Regime overlay (K) | 14.3% | 1.07 | −18.2% | −2.2% | −0.35 | −47.5% |
 | Fund alone | 14.1% | 0.75 | −47.6% | −5.2% | −0.40 | −56.8% |
@@ -43,6 +43,11 @@ bet that the post-2007 relation continues.
 | 60/40 fund/IEF | 10.0% | 0.80 | −27.0% | −0.1% | −0.26 | −31.3% |
 | 10-month trend rule | 11.4% | 0.76 | −19.7% | 7.4% | 0.73 | −7.4% |
 | Volatility target 15% | 11.7% | 0.72 | −36.1% | −0.4% | −0.21 | −37.3% |
+
+Monthly returns after one-way trading costs per sleeve; Sharpe ratios annualised (×√12) from monthly
+returns in excess of the 3-month T-bill; max DD on month-end values. 2007-04 to 2026-09 overlaps the 2011–2026 data the allocation table was designed on, so
+it is partly in sample; 2000-10 to 2007-03 is fully out of sample. Differences and their bootstrap
+intervals are in H4–H6 above.
 
 ## Mechanism: where the overlay's gain comes from
 

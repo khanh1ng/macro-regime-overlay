@@ -31,7 +31,7 @@ def main():
     d = lambda per, k: B[per][k]
     kf1, kf0, kfa = d("P1", "K - Fund"), d("P0", "K - Fund"), d("Pall", "K - Fund")
 
-    rows = ["| Strategy | 2007–2026 CAGR | Sharpe | Max drawdown | 2000–2007 CAGR | Sharpe | Max drawdown |",
+    rows = ["| Strategy | CAGR 2007–26 | Sharpe 2007–26 | Max DD 2007–26 | CAGR 2000–07 | Sharpe 2000–07 | Max DD 2000–07 |",
             "|---|---:|---:|---:|---:|---:|---:|"]
     for code, label in (("k", "Regime overlay (K)"), ("f", "Fund alone"), ("s", "K's average weights, no timing (S-K)"),
                         ("sf", "60/40 fund/IEF"), ("t", "10-month trend rule"), ("vt", "Volatility target 15%")):
@@ -76,6 +76,11 @@ bet that the post-2007 relation continues.
 ## Results (after costs)
 
 {table}
+
+Monthly returns after one-way trading costs per sleeve; Sharpe ratios annualised (×√12) from monthly
+returns in excess of the 3-month T-bill; max DD on month-end values. 2007-04 to 2026-09 overlaps the 2011–2026 data the allocation table was designed on, so
+it is partly in sample; 2000-10 to 2007-03 is fully out of sample. Differences and their bootstrap
+intervals are in H4–H6 above.
 
 ## Mechanism: where the overlay's gain comes from
 
