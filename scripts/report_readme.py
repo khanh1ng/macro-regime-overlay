@@ -56,7 +56,7 @@ published at the time; specification frozen before the backtest; evaluation 2000
 data available at each date ({V['ip_n']} vintages of industrial production, consumer prices that are never
 revised), raised the Sharpe ratio from {V['P1_f_sh']} to {V['P1_k_sh']} and cut the maximum drawdown from {V['P1_f_dd']}
 to {V['P1_k_dd']} in 2007–2026 (Sharpe difference {kf1['sharpe_diff']:+.2f}, 90% bootstrap CI {ci(kf1['sharpe_ci90'])}, Ledoit–Wolf
-p = {pv(lw('P1', 'K - Fund'))}). That gain rests on one crisis: without October 2007 to March 2009 it is
+p = {pv(lw('P1', 'K - Fund'))}). The overlay's gain rests on one crisis: without October 2007 to March 2009 the difference is
 {CR['K - Fund']['sharpe_diff']:+.2f} (p = {pv(CR['K - Fund']['ledoit_wolf']['p'])}). Splitting the gain shows two parts that behave differently.
 Holding the overlay's average weights without timing raises the Sharpe ratio before 2007 (p = {pv(lw('P0', 'S-K - Fund'))})
 and over 2000–2026 (p = {pv(lw('Pall', 'S-K - Fund'))}). Regime timing adds {V['P1_ti_sh']} after 2007 (p = {pv(lw('P1', 'K - S-K'))}; {pv(CR['K - S-K']['ledoit_wolf']['p'])}
@@ -68,6 +68,10 @@ recur.
 [`docs/RESEARCH_LOG.md`](docs/RESEARCH_LOG.md).
 
 ## Hypotheses and verdicts
+
+The hypotheses follow the argument: H1 checks the data, H2–H3 test whether regimes carry information
+about returns, H4–H6 test the overlay and split its gain, and H7–H10 test whether the conclusions could be
+artefacts of the hold-outs, the model or the data delay.
 
 | | Hypothesis | Test | Evidence | Verdict |
 |---|---|---|---|---|
@@ -84,6 +88,8 @@ recur.
 
 ## Results (after costs)
 
+The table gives the level of each strategy behind the differences tested in H4–H6.
+
 {table}
 
 Monthly returns after one-way trading costs per sleeve; Sharpe ratios annualised (×√12) from monthly
@@ -92,6 +98,8 @@ it is partly in sample; 2000-10 to 2007-03 is fully out of sample. Differences a
 intervals are in H4–H6 above.
 
 ## Mechanism: where the overlay's gain comes from
+
+Three measured facts explain why the overlay's gain is real but not evidence for regime timing.
 
 * **Diversification lowers volatility at a cost in return.** After 2007 the average allocation
   ({V['sk_w']}) gives up {V['P1_st_ret'].lstrip('−')} points a year of return but raises the Sharpe ratio
@@ -104,6 +112,9 @@ intervals are in H4–H6 above.
 
 ## Threats to validity
 
+Each threat below could make a weak result look strong. The table states how the design handles each
+and what remains open.
+
 | Threat | How it is handled | What remains |
 |---|---|---|
 | Look-ahead | Real-time vintages; truncation tests at {V['tl_cuts']} cuts with a positive control | None known |
@@ -115,6 +126,8 @@ intervals are in H4–H6 above.
 | Costs | One-way costs per sleeve, doubled and ×5 | {V['cost_k_x5']} bps a year at ×5: immaterial |
 
 ## Implications
+
+The verdicts say what an allocator should hold and how a regime study should be run.
 
 * **For an allocator:** hold the diversified mix; it improved risk-adjusted return in the period not
   used to design it and rebalances with low turnover ({V['s_turn']} a year). The timing layer earned its

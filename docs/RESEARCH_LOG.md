@@ -622,3 +622,13 @@ labels in 40% of months.
 data's delay does not rescue regime timing. After 2007 the macro version is better, because real-time
 macro data labelled 2008 as Stagflation and prices did not soon enough (M1 drawdown −28.8% against
 −18.2%). Before 2007 M1 beats the fund, through its average allocation, not its timing.
+
+## Final writing pass (2026-10-07)
+
+* Every paper section opens with the question it answers; sentences that opened with a pronoun name their
+  subject. The implications sentence "it paid off after 2007 and cost money in 2000–2007" is replaced by
+  the Step 11 result (gain almost entirely in 2008; negative but not significant before 2007).
+* The abstract adds the p-value of the Stagflation sign change and the market-price result (Step 12).
+* Limitations add "One fund": the fund's management may have changed over 1992–2026; unmanaged index
+  hold-outs share the pattern, which makes a manager-specific explanation less likely but does not exclude it.
+* Each README section opens with the reason it exists.

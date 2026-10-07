@@ -10,7 +10,7 @@ published at the time; specification frozen before the backtest; evaluation 2000
 data available at each date (766 vintages of industrial production, consumer prices that are never
 revised), raised the Sharpe ratio from 0.75 to 1.07 and cut the maximum drawdown from −47.6%
 to −18.2% in 2007–2026 (Sharpe difference +0.32, 90% bootstrap CI [+0.06, +0.55], Ledoit–Wolf
-p = 0.028). That gain rests on one crisis: without October 2007 to March 2009 it is
+p = 0.028). The overlay's gain rests on one crisis: without October 2007 to March 2009 the difference is
 +0.19 (p = 0.14). Splitting the gain shows two parts that behave differently.
 Holding the overlay's average weights without timing raises the Sharpe ratio before 2007 (p = 0.007)
 and over 2000–2026 (p = 0.005). Regime timing adds +0.22 after 2007 (p = 0.07; 0.21
@@ -22,6 +22,10 @@ recur.
 [`docs/RESEARCH_LOG.md`](docs/RESEARCH_LOG.md).
 
 ## Hypotheses and verdicts
+
+The hypotheses follow the argument: H1 checks the data, H2–H3 test whether regimes carry information
+about returns, H4–H6 test the overlay and split its gain, and H7–H10 test whether the conclusions could be
+artefacts of the hold-outs, the model or the data delay.
 
 | | Hypothesis | Test | Evidence | Verdict |
 |---|---|---|---|---|
@@ -37,6 +41,8 @@ recur.
 | H10 | Regimes read from market prices, which have no publication delay, time the fund better | SPY − Treasuries and commodities − Treasuries over 6 months, same sign rule; spec fixed before the run; walk-forward variant | Timing over its own static mix +0.01 (p = 0.90) after 2007, +0.13 (p = 0.54) before; worse than macro K after 2007 (−0.24, p = 0.035); labels agree with macro in 40% of months | **Not supported** |
 
 ## Results (after costs)
+
+The table gives the level of each strategy behind the differences tested in H4–H6.
 
 | Strategy | CAGR 2007–26 | Sharpe 2007–26 | Max DD 2007–26 | CAGR 2000–07 | Sharpe 2000–07 | Max DD 2000–07 |
 |---|---:|---:|---:|---:|---:|---:|
@@ -54,6 +60,8 @@ intervals are in H4–H6 above.
 
 ## Mechanism: where the overlay's gain comes from
 
+Three measured facts explain why the overlay's gain is real but not evidence for regime timing.
+
 * **Diversification lowers volatility at a cost in return.** After 2007 the average allocation
   (fund 61%, HYG 8%, GLD 18%, DBC 1%, SHY 7%, UUP 5%) gives up 3.2 points a year of return but raises the Sharpe ratio
   and cuts the drawdown by 16.5 points.
@@ -64,6 +72,9 @@ intervals are in H4–H6 above.
   relative to other regimes), and the overlay cut it.
 
 ## Threats to validity
+
+Each threat below could make a weak result look strong. The table states how the design handles each
+and what remains open.
 
 | Threat | How it is handled | What remains |
 |---|---|---|
@@ -77,6 +88,8 @@ intervals are in H4–H6 above.
 
 ## Implications
 
+The verdicts say what an allocator should hold and how a regime study should be run.
+
 * **For an allocator:** hold the diversified mix; it improved risk-adjusted return in the period not
   used to design it and rebalances with low turnover (0.32 a year). The timing layer earned its
   gain in one crisis; adopting it is a bet that such episodes recur with the same regime signature.
@@ -87,10 +100,13 @@ intervals are in H4–H6 above.
 
 ## Layout
 
+Each step of the research log is one script, and every number in the paper and in this README is read from `results/`.
+
 ```
 mo/            data (Yahoo with distributions), macro (real-time IP vintages, unrevised CPI), regime,
-               backtest (proxies, drift-aware turnover), strategies, stats (Newey-West, Wald), boot (stationary bootstrap)
-scripts/       s0_verify ... s9_mechanism: one script per step; make_papers fills paper/template.tex;
+               backtest (proxies, drift-aware turnover), strategies, stats (Newey-West, Wald), boot (stationary bootstrap),
+               infer (Ledoit-Wolf test and the significance rule)
+scripts/       s0_verify ... s11_market_regimes: one script per step; make_papers fills paper/template.tex;
                report_readme writes the top of this README; fetch_data
 tests/         look-ahead tests with positive controls, engine checks, regression checks
 paper/         template.tex (with @@placeholders@@), generated paper.tex, paper.pdf
@@ -100,6 +116,8 @@ data/          reference_returns.json (from the SEC filing), old_claims.json; do
 ```
 
 ## Reproducing
+
+One download and one command rebuild every result, test and the paper.
 
 ```bash
 pip install numpy pandas scipy requests pyarrow openpyxl pandas-datareader

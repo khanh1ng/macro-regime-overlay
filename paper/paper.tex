@@ -29,16 +29,15 @@ specification frozen before any backtest. Three results. First, revisions matter
 regimes agree in only $81.8\%$ of months, and the usual backtest construction agrees with what was
 knowable in $67.3\%$. Second, real-time regimes do not forecast next month's excess return of any of
 12 asset classes once 36 tests are accounted for, and for the growth fund the effect of
-Stagflation reverses sign around 2007 ($+14.0\%$ a year relative to other regimes before, $-20.9\%$ after).
+Stagflation reverses sign around 2007 ($+14.0\%$ a year relative to other regimes before, $-20.9\%$ after; change $p=$ $0.01$).
 Third, a regime overlay improves the fund's Sharpe ratio from $0.75$ to $1.07$ in 2007--2026
 (Ledoit--Wolf $p=$ $0.03$), with a timing component of $+0.22$ ($p=$ $0.07$); both gains rest on the
 2008 crisis and are not significant without it. In 2000--2007 the same timing lowers the Sharpe ratio by
 $-0.18$ (not significant), for the fund and for ten other equity funds and indices of different styles and
-regions; these, however, behave like little more than one independent series. A standard predictive
-regression on the same real-time signals has no out-of-sample skill and adds no value either, and the
+regions; these, however, behave like little more than one independent series. A standard predictive regression on the same real-time signals has no out-of-sample skill, regimes read from market prices do no better, and the
 stock--bond correlation does not explain the change. Holding the overlay's average weights without timing
 reduces the drawdown in both periods and raises the Sharpe ratio over 2000--2026 ($+0.14$, 90\% interval
-$[+0.05,\ +0.22]$). The robust recommendation is static diversification; regime timing is a bet on the post-2007 era.
+$[+0.05,\ +0.22]$). The robust recommendation is static diversification; regime timing is a bet that 2008-type episodes recur.
 \end{abstract}
 
 %=====================================================================
@@ -47,7 +46,7 @@ $[+0.05,\ +0.22]$). The robust recommendation is static diversification; regime 
 
 \paragraph{The problem.} Many investors hold a single concentrated growth fund. The JPMorgan Large Cap Growth
 Fund is a good example: a large, well-run fund whose ten largest positions are about half of its assets and
-which holds almost nothing outside U.S.\ growth equity. Its returns are excellent in most years, and its
+which holds almost nothing outside U.S.\ growth equity. The fund's returns are excellent in most years, and its
 drawdowns are deep when growth stocks fall together: $-47.6\%$ on month-end data in 2008 (Class I shares),
 $-31.82\%$ from peak to trough in March 2020 on daily data, and $-27.81\%$ on month-end data in 2022. The
 question is whether adding other assets, and changing how much is added with the macro environment, can keep
@@ -116,6 +115,9 @@ signals fails in the same way (Section~\ref{sec:model}).
 \section{Data and verification}
 \label{sec:data}
 
+Every later result depends on two kinds of data, fund returns and macro releases. Both are checked against independent sources before use.
+
+
 \paragraph{Asset returns.} Daily total returns from Yahoo Finance, compounded to month-end, for the fund
 (JLGMX, Class R6, from December 2010; before that its Class I shares SEEGX, the same portfolio with returns
 $0.31$ points a year lower on average because of the higher fee), growth and broad equity benchmarks,
@@ -152,8 +154,7 @@ $0.07$ points in a month; and no fund shows a drop of more than 4\% on a day whe
 less than 1.5\%, the signature of a missing distribution.
 
 \paragraph{Why this matters: an earlier backtest.} An earlier backtest of the overlay studied here, run by the
-author on vendor monthly prices for 2011--2026, is a useful warning (Table~\ref{tab:old}). Its compound
-return for the fund is the same as ours, $16.8\%$, but its volatility was $4.1$ percentage
+author on vendor monthly prices for 2011--2026, is a useful warning (Table~\ref{tab:old}). The earlier backtest's compound return for the fund is the same as ours, $16.8\%$, but its volatility was $4.1$ percentage
 points higher and its losses were placed in the wrong months: $-29\%$ in late 2018 that was really $-18.5\%$,
 and $-13\%$ in 2022 that was really $-23.4\%$. The same compound return with more volatility is the signature
 of distributions recorded in the wrong month: a fund that pays a large capital gain in December shows a fake
@@ -200,6 +201,9 @@ $0.27$ points.
 %=====================================================================
 \section{Regimes in real time}
 \label{sec:regimes}
+
+A regime label is usable only if it could have been computed on the decision date. The classifier below uses only data published by then, and the section measures how much revisions change the labels.
+
 
 \paragraph{Timing.} The decision is made at the end of month $t$ and applies to returns in month $t+1$. At that
 moment industrial production is known through month $t-1$ (the vintage dated $t$), and so are consumer
@@ -297,6 +301,9 @@ which version is used.
 %=====================================================================
 \section{Do regimes forecast returns?}
 \label{sec:predict}
+
+A regime allocation assumes that the current regime predicts next month's returns. That assumption is tested before any allocation is built on it.
+
 
 \paragraph{Test.} For each asset we regress the excess return of month $t+1$ on four dummies for the regime known
 at the end of month $t$; the coefficients are the average excess returns by regime. Standard errors are
@@ -400,8 +407,7 @@ years before 2007 and 14 after; the largest clusters are 2005 (7), 1990 (5), 199
 2007--2008); the 2022 inflation shock contributes only 3, because year-on-year growth of industrial
 production was still rising in the decisions from March to August 2022. \citet{campbell2020} link the change in
 sign of the stock--bond correlation around 2000 to changes in monetary policy and in the nature of inflation
-shocks; a similar change could make the equity response to rising inflation depend on the era. This is a
-hypothesis; the data cannot separate it from the simpler explanation that a few episodes dominate each half.
+shocks; a similar change could make the equity response to rising inflation depend on the era. The analogy is a hypothesis; the data cannot separate it from the simpler explanation that a few episodes dominate each half.
 
 \paragraph{Testing that mechanism.} We can test one version directly. At each decision month we compute the
 correlation between the fund's and intermediate Treasuries' monthly returns over the previous 36 months, which is
@@ -415,13 +421,16 @@ sign change: the change follows the calendar, not the correlation state.
 
 \paragraph{Power.} The standard error of the fund's Stagflation contrast is $7.7\%$ a year, so an effect would
 have to be about $21\%$ a year to be detected with 80\% probability at the 5\% level ($29\%$ and
-$26\%$ in the two halves). The data do not show that regimes are irrelevant. They show that differences of
+$26\%$ in the two halves). The data do not show that regimes are irrelevant. The data show that differences of
 the size observed cannot be told from chance and do not keep their sign, which is a weak basis for an
 allocation rule.
 
 %=====================================================================
 \section{The overlay and the test design}
 \label{sec:design}
+
+The overlay is tested as a frozen hypothesis: the table, the comparisons and the success criterion are fixed before any backtest is run.
+
 
 \begin{table}[htbp]
 \centering
@@ -440,12 +449,10 @@ Stagflation (down, up) & 25 & & 25 & & 30 & 20 \\
 \end{tabular}
 \end{table}
 
-\paragraph{The overlay.} Overlay K (Table~\ref{tab:k}) is a typical regime table. It keeps most of the fund in
+\paragraph{The overlay.} Overlay K (Table~\ref{tab:k}) is a typical regime table. K keeps most of the fund in
 Goldilocks and Disinflation, cuts it deeply in Stagflation, and chooses hedges by regime: gold and
-commodities when inflation rises, short Treasuries and dollars in Stagflation, and a high-yield sleeve when
-growth rises. It was chosen by the author in the earlier backtest of Section~\ref{sec:data}, on 2011--2026
-data, after trying about 40 configurations, and motivated by regime averages and by 2022. It is
-therefore treated here as a hypothesis, frozen exactly as it was, and tested under conditions it was not
+commodities when inflation rises, short Treasuries and dollars in Stagflation, and a high-yield sleeve when growth rises. The author chose K in the earlier backtest of Section~\ref{sec:data}, on 2011--2026
+data, after trying about 40 configurations, and motivated by regime averages and by 2022. K is therefore treated here as a hypothesis, frozen exactly as it was, and tested under conditions it was not
 designed for.
 
 \paragraph{Specification frozen before any backtest.} Every choice below was written down before the first
@@ -501,6 +508,9 @@ identical output.
 %=====================================================================
 \section{Results}
 \label{sec:results}
+
+The results compare the overlay with the fund and simpler alternatives in each period, split its gain into allocation and timing, and then test two alternatives to the regime table.
+
 
 \begin{table}[htbp]
 \centering
@@ -836,14 +846,15 @@ its average allocation.
 
 \paragraph{For the investor.} Holding about 60\% of the fund with gold, short Treasuries, high yield and dollars,
 without timing, reduced the worst drawdown in both periods and raised the Sharpe ratio, significantly before
-2007 and over 2000--2026 (after 2007 the interval includes zero); this is the robust part.
-The timing amounts to holding more growth equity when the classifier says Goldilocks or Disinflation and much
-less in Stagflation. It paid off after 2007 and cost money in 2000--2007; adopting it is a bet that the
-post-2007 relation continues. A 10-month trend rule, which needs no macro data, was the best strategy in
+2007 and over 2000--2026 (after 2007 the interval includes zero); the static allocation is the robust part.
+The timing amounts to holding more growth equity when the classifier says Goldilocks or Disinflation and much less in Stagflation. The timing gained after 2007, almost entirely in the 2008 crisis, and was negative but not significant in 2000--2007; adopting it is a bet that 2008-type episodes recur with the same regime signature. A 10-month trend rule, which needs no macro data, was the best strategy in
 2000--2007 and matched the overlay's drawdown afterwards.
 
 %=====================================================================
 \section{Limitations}
+
+The conclusions rest on few episodes, one fund family and proxies before 2007; each limit below states its effect on the verdict.
+
 
 \paragraph{Few episodes.} Each period is dominated by one crash, 2000--2002 and 2008. Bootstrap intervals describe
 sampling noise around one history, and the hold-out assets behave like about $1.2$ independent series; no
@@ -852,7 +863,11 @@ statistical method creates more crises.
 \paragraph{The overlay was designed on 2011--2026.} The later period overlaps the data used to choose K, so its
 results there are partly in sample. Only 2000--2007 is fully out of sample, and it is 78 months long.
 
-\paragraph{Proxies.} Before 2007 the sleeves are mutual funds and futures indices. Their tracking errors are small
+\paragraph{One fund.} The fund's management and mandate may have changed over 1992--2026, so its pre-2007 returns may describe a
+different portfolio. The ten hold-out funds and indices, which include unmanaged indices, show the same signs, which makes a
+manager-specific explanation less likely but does not exclude it.
+
+\paragraph{Proxies.} Before 2007 the sleeves are mutual funds and futures indices. The proxies' tracking errors are small
 for Treasuries, gold and the dollar but larger for high yield and commodities (Table~\ref{tab:proxy}).
 
 \paragraph{One growth series, one horizon, one country.} Industrial production covers a shrinking share of the
