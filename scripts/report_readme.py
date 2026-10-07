@@ -44,6 +44,7 @@ def main():
 **Real-time macro regimes and a concentrated growth fund: the overlay's gain is mostly
 diversification; regime timing worked only after 2007.** One paper (15 pages); regimes from data
 published at the time; specification frozen before the backtest; evaluation 2000–2026.
+*Original backtest spring 2026; re-tested with real-time data and a frozen specification, October 2026.*
 
 **Summary.** A growth–inflation regime overlay on the JPMorgan Large Cap Growth Fund, built only from
 data available at each date ({V['ip_n']} vintages of industrial production, consumer prices that are never

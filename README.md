@@ -4,6 +4,7 @@
 **Real-time macro regimes and a concentrated growth fund: the overlay's gain is mostly
 diversification; regime timing worked only after 2007.** One paper (15 pages); regimes from data
 published at the time; specification frozen before the backtest; evaluation 2000–2026.
+*Original backtest spring 2026; re-tested with real-time data and a frozen specification, October 2026.*
 
 **Summary.** A growth–inflation regime overlay on the JPMorgan Large Cap Growth Fund, built only from
 data available at each date (766 vintages of industrial production, consumer prices that are never
@@ -79,7 +80,8 @@ bet that the post-2007 relation continues.
 ```
 mo/            data (Yahoo with distributions), macro (real-time IP vintages, unrevised CPI), regime,
                backtest (proxies, drift-aware turnover), strategies, stats (Newey-West, Wald), boot (stationary bootstrap)
-scripts/       s0_verify ... s9_mechanism: one script per step; make_papers fills paper/template.tex; fetch_data
+scripts/       s0_verify ... s9_mechanism: one script per step; make_papers fills paper/template.tex;
+               report_readme writes the top of this README; fetch_data
 tests/         look-ahead tests with positive controls, engine checks, regression checks
 paper/         template.tex (with @@placeholders@@), generated paper.tex, paper.pdf
 results/       every number in the paper, as JSON/CSV
