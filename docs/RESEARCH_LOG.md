@@ -575,3 +575,34 @@ evidence: the estimate is negative but fails the pre-set rule; it is now "negati
 (3) Drawdown differences are reported as point estimates. (4) H3 is now supported by a test of the difference,
 not by the two signs. (5) The README described the 36 predictability tests wrongly as regime contrasts; they
 are Wald tests, 12 assets × 3 classifiers.
+
+## Step 12: regimes from market prices instead of macro data (specification written before running, 2026-10-07)
+
+**Question.** Macro data arrive late (IP for month t−1 is known only in mid-month t, and the signal is a
+6-month change of a year-on-year rate). Market prices are known at each month-end and are never revised.
+Do regimes read from prices, used in a fully walk-forward way, time the fund better?
+
+**Signals, fixed now (no search).** At the end of month t, from returns through month t only:
+* growth direction g = 6-month total return of SPY minus that of IEF (VFITX before IEF existed);
+* inflation direction i = 6-month return of DBC (S&P GSCI plus the T-bill rate before DBC) minus IEF;
+* regime from the signs, with the same rule as the macro classifier; it applies to month t+1.
+Six months matches the horizon of the macro signal. Note fixed in advance: "equities beat bonds over
+six months" is close to time-series momentum, so results are compared with the 10-month trend rule too.
+
+**Configurations (2).**
+* M1 (primary): the frozen K table applied to market regimes.
+* M2: walk-forward allocation with the formula of Step 9: fund weight = min{1, max[0.25, 0.60 + (μ̂ − r̄)/(5σ̂²)]},
+  where μ̂ is the mean fund excess return in past months that followed the current market regime, r̄ and σ̂²
+  the mean and variance of all past fund excess returns; the rest in the fixed hedge mix of Step 9. Only
+  months whose returns are known at t are used; at least 60 past months (market data start in 1993).
+Trials counted from now on: 54 + 2 = 56.
+
+**Comparisons.** M1 − its own static average weights (timing), M1 − fund, M1 − macro K, M1 − trend rule;
+M2 − 60% static mix (timing), M2 − fund. Periods 2007–2026, 2000–2007, 2000–2026, JLGMX only 2011–2026,
+and 2007–2026 without October 2007 to March 2009.
+
+**Tests and rule.** Stationary bootstrap (mean blocks 6, 12, 24) and Ledoit–Wolf; a difference is
+significant only if every 90% bootstrap interval excludes zero and Ledoit–Wolf p < 0.10 (Step 11 rule).
+**Market-regime timing adds value** only if M1's timing difference is significant and positive in both
+2007–2026 and 2000–2007. A look-ahead test (labels from data truncated at t equal labels from full data,
+with a positive control that uses month t+1) must pass first.
